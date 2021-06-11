@@ -4,6 +4,23 @@
 		<meta name = "viewport" content="width = device-width, initial-scale = 1" />
 	</head>
 <body>
-			<h1>ciaooooooooooooooooooooooooooo</h1>
+	<div th:replace="fragments/base.html :: areaPersonale"></div>
+	
+	<header th:replace="fragments/base.html :: intestazione"></header>
+	
+	<div id="flex-container">
+		<span id="color1" class="flex-item"><a th:href="@{/artisti}">Artisti</a></span>
+		<span id="color2" class="flex-item"><a th:href="@{/collezioni}">Collezioni</a></span>
+		<span id="color3" class="flex-item"><a th:href="@{/informazioni}">Informazioni</a></span>
+	</div>
+	
+	<div id="img-container">
+		<span id="img1" class="img-item"> </span>
+		<span id="img2" class="img-item"> </span>
+		<span id="img3" class="img-item"> </span>
+		<span id="img4" class="img-item"> </span>
+	</div>
+
+    <footer th:replace="fragments/base.html :: fondo"></footer>
 </body>
 </html>

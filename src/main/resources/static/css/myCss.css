@@ -1,5 +1,88 @@
 body {
-    background: rgb(255, 0, 0);	
+    background: PaleGoldenrod;	
     font-family: 'Tahoma';
 }
 
+header {
+    background: no-repeat left/cover url(/images/museo.jpg);
+    display: flex;
+    height: 200px;
+    min-width: 120px;
+    align-items: center;
+    color: #fff;
+    text-shadow: #000 0 0 .2em;
+}
+
+header > h1 {
+    font: bold calc(1em + 2 * (100vw - 120px) / 100) 'Tahoma', cursive,
+        fantasy;
+    margin: 2%;
+
+}
+
+#flex-container {
+	display: flex;
+	align-items: flex-start;
+	height: 50px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.flex-item { 
+	transform: skew(-20deg); 
+	flex-grow: 1;
+	height: 100%;
+	text-align: center;
+	line-height: 45px;
+	font-size: 150%;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+#img-container{
+	display: flex;
+	height: 600px;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-top: 30px;
+}
+
+.img-item{
+	align-items: center;
+	flex-grow: 1;
+}
+
+#img1{
+	background: no-repeat left/cover url(/images/amore-e-psiche.jpg);
+}
+
+#img2{
+	background: no-repeat left/cover url(/images/Gioconda.jpg);
+}
+
+#img3{
+	background: no-repeat left/cover url(/images/Ninfee.webp);
+}
+
+#img4{
+	background: no-repeat left/cover url(/images/vangogh-girasoli.jpg);
+}
+
+#color1 {
+	background-color: LimeGreen;
+}
+
+#color2 {
+	background-color: Coral;
+}
+
+#color3 {
+	background-color: MediumPurple;
+}
+
+
+footer {
+    border-top-style: outset;
+    margin-top: 2em;
+	}
+	
+span.input {width: 30%;}
