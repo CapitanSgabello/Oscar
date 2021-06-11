@@ -6,12 +6,22 @@
 <body>
 	
 	<header th:replace="fragments/base.html :: intestazione"></header>
-
-	<button class="button" style="vertical-align:middle"><span>Edizioni </span></button><br>
-	<button class="button" style="vertical-align:middle"><span>Categorie </span></button><br>
-	<button class="button" style="vertical-align:middle"><span>Film </span></button><br>
-	<button class="button" style="vertical-align:middle"><span>Attori e Registi </span></button><br>
-	<button class="button" style="vertical-align:middle"><span>Login </span></button><br>
+	
+	<form th:action="@{/edizioni}" method="GET">
+        <button class="button" style="vertical-align:middle"><span>Edizioni </span></button><br>
+	</form>
+	<form th:action="@{/categorie}" method="GET">
+        <button class="button" style="vertical-align:middle"><span>Categorie </span></button><br>
+	</form>
+	<form th:action="@{/index}" method="GET">
+        <button class="button" style="vertical-align:middle"><span>Film </span></button><br>
+	</form>
+	<form th:action="@{/index}" method="GET">
+        <button class="button" style="vertical-align:middle"><span>Attori e Registi </span></button><br>
+	</form>
+	<form th:action="@{/index}" method="GET">
+        <button class="button" style="vertical-align:middle"><span>Login </span></button><br>
+	</form>
 	
 	<div id="img-container">
 		<span id="img1" class="img-item"> </span>

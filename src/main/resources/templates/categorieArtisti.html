@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="fragments/base.html :: headerfiles(title=#{title.index})">
+		<meta name = "viewport" content="width = device-width, initial-scale = 1" />
+	</head>
+<body>
+	<header th:replace="fragments/base.html :: intestazione"></header>
+	
+	<div>
+    	<h2></h2>
+		<div th:each="categoria : ${categorieArtisti}">
+			<form th:action="@{'/categoriaA' + '/' + ${categoria.id}}" method="GET">
+        		<button class="button" style="vertical-align:middle"><span th:text="|${categoria.nome} ${categoria.edizione.anno}|">Nome anno</span></button><br>
+			</form>
+		</div>
+	</div>
+    <footer th:replace="fragments/base.html :: fondo"></footer>
+</body>
+</html>

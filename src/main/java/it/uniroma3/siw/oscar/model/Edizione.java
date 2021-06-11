@@ -1,6 +1,5 @@
 package it.uniroma3.siw.oscar.model;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,11 +10,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-
-
+import javax.persistence.OneToMany;
 
 @Entity
 public class Edizione {
+	
+	public static final String LUOGO = "Dolby Theatre, Los Angeles";
 
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
@@ -27,18 +27,19 @@ public class Edizione {
 	@Column(nullable = false, unique=true)
 	private Long anno;
 	
-	@ManyToMany
+	@OneToMany(mappedBy="edizione")
 	private List<CategoriaFilm> categorieFilm;
 	
-	@ManyToMany
+	@OneToMany(mappedBy="edizione")
 	private List<CategoriaArtista> categorieArtisti;
 	
 	@ManyToOne
 	private Artista presentatore;
 	
 	public Edizione() {
-		this.categorieArtisti=new ArrayList();
-		this.categorieFilm=new ArrayList();
+		this.luogo = LUOGO;
+		this.categorieArtisti=new ArrayList<>();
+		this.categorieFilm=new ArrayList<>();
 	}
 
 	public Long getId() {

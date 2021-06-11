@@ -21,8 +21,8 @@ public class CategoriaFilm {
 	@Column(nullable = false)
 	private String nome;
 	
-	@ManyToMany(mappedBy="categorieFilm")
-	private List<Edizione> edizioni;
+	@ManyToOne
+	private Edizione edizione;
 	
 	@ManyToOne
 	private Film vincitore;
@@ -31,8 +31,7 @@ public class CategoriaFilm {
 	private List<Film> candidati;
 	
 	public CategoriaFilm() {
-		this.candidati=new ArrayList();
-		this.edizioni=new ArrayList();
+		this.candidati=new ArrayList<>();
 	}
 
 	public Long getId() {
@@ -51,12 +50,12 @@ public class CategoriaFilm {
 		this.nome = nome;
 	}
 
-	public List<Edizione> getEdizioni() {
-		return edizioni;
+	public Edizione getEdizione() {
+		return edizione;
 	}
 
-	public void setEdizioni(List<Edizione> edizioni) {
-		this.edizioni = edizioni;
+	public void setEdizione(Edizione edizione) {
+		this.edizione = edizione;
 	}
 
 	public Film getVincitore() {

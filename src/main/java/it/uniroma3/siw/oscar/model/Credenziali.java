@@ -2,12 +2,13 @@ package it.uniroma3.siw.oscar.model;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-
+@Entity
 public class Credenziali {
 
 	public static String DEFAULT_ROLE = "DEFAULT";
@@ -28,6 +29,8 @@ public class Credenziali {
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private Utente utente;
+	
+	public Credenziali() {}
 
 	public static String getDefaultRole() {
 		return DEFAULT_ROLE;

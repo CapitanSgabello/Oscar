@@ -48,10 +48,10 @@ public class Film {
 	private Artista regista;
 	
 	public Film() {
-		this.attori=new ArrayList();
-		this.categorieCandidate=new ArrayList();
-		this.categorieVinte=new ArrayList();
-		this.operatoriTecnici=new ArrayList();
+		this.attori=new ArrayList<>();
+		this.categorieCandidate=new ArrayList<>();
+		this.categorieVinte=new ArrayList<>();
+		this.operatoriTecnici=new ArrayList<>();
 	}
 
 	public Long getId() {

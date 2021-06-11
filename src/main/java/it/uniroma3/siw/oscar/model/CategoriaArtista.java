@@ -21,8 +21,8 @@ public class CategoriaArtista {
 	@Column(nullable = false)
 	private String nome;
 	
-	@ManyToMany(mappedBy="categorieArtisti")
-	private List<Edizione> edizioni;
+	@ManyToOne
+	private Edizione edizione;
 	
 	@ManyToOne
 	private Artista vincitore;
@@ -32,7 +32,6 @@ public class CategoriaArtista {
 	
 	public CategoriaArtista() {
 		this.candidati=new ArrayList();
-		this.edizioni=new ArrayList();
 	}
 
 	public Long getId() {
@@ -51,12 +50,12 @@ public class CategoriaArtista {
 		this.nome = nome;
 	}
 
-	public List<Edizione> getEdizioni() {
-		return edizioni;
+	public Edizione getEdizione() {
+		return edizione;
 	}
 
-	public void setEdizioni(List<Edizione> edizioni) {
-		this.edizioni = edizioni;
+	public void setEdizione(Edizione edizione) {
+		this.edizione = edizione;
 	}
 
 	public Artista getVincitore() {
