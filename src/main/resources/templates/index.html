@@ -4,15 +4,14 @@
 		<meta name = "viewport" content="width = device-width, initial-scale = 1" />
 	</head>
 <body>
-	<div th:replace="fragments/base.html :: areaPersonale"></div>
 	
 	<header th:replace="fragments/base.html :: intestazione"></header>
-	
-	<div id="flex-container">
-		<span id="color1" class="flex-item"><a th:href="@{/artisti}">Artisti</a></span>
-		<span id="color2" class="flex-item"><a th:href="@{/collezioni}">Collezioni</a></span>
-		<span id="color3" class="flex-item"><a th:href="@{/informazioni}">Informazioni</a></span>
-	</div>
+
+	<button class="button" style="vertical-align:middle"><span>Edizioni </span></button><br>
+	<button class="button" style="vertical-align:middle"><span>Categorie </span></button><br>
+	<button class="button" style="vertical-align:middle"><span>Film </span></button><br>
+	<button class="button" style="vertical-align:middle"><span>Attori e Registi </span></button><br>
+	<button class="button" style="vertical-align:middle"><span>Login </span></button><br>
 	
 	<div id="img-container">
 		<span id="img1" class="img-item"> </span>
