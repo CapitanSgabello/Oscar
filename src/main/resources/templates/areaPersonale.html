@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="fragments/base.html :: headerfiles(title=#{title.areaPersonale})">
+		<meta name = "viewport" content="width = device-width, initial-scale = 1" />
+	</head>
+<body>
+	<header th:replace="fragments/base.html :: intestazione"></header>
+	
+	<div th:replace="fragments/base.html :: DettagliPersona"></div>
+	
+	<footer th:replace="fragments/base.html :: fondo"></footer>
+</body>
