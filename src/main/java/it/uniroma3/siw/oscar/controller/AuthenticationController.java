@@ -70,11 +70,12 @@ public class AuthenticationController {
 		//recuperiamo le credenziali associate a questo user a partire dal nome username
 		Credenziali credenziali = credenzialiService.getCredenziali(userDetails.getUsername());
 
+		String username = request.getUserPrincipal().getName();
+		model.addAttribute("utente", this.credenzialiService.getCredenziali(username).getUtente());
+		
 		//se queste credenziali hanno il ruolo di admin allora mandiamo ad una pagina che contiene il menu dell'amministratore
 		//altrimenti lo mandiamo alla pagina home
 		if (credenziali.getRuolo().equals(Credenziali.ADMIN_ROLE)) {
-			String username = request.getUserPrincipal().getName();
-			model.addAttribute("utente", this.credenzialiService.getCredenziali(username).getUtente());
 			return "admin/home";
 		}
 		return "areaPersonale.html";

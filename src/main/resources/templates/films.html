@@ -6,12 +6,12 @@
 <body>
 	<header th:replace="fragments/base.html :: intestazione"></header>
 	<div class="center">
-	<form th:action="@{/films}" method="POST">
 	
 	<h2>Ricerca un film:</h2>
-        <input type='text' name='titolo' placeholder='Inserisci il titolo' /><br>
-        
-	</form>
+		<form th:action="@{/film}" method="POST">
+        	<input type='text' name='titolo' placeholder='Inserisci il titolo' /><br>
+		</form>
+       
 	</div>
 	<div><ul>
     	<h1>Film:</h1>

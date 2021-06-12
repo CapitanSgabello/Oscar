@@ -9,7 +9,9 @@
 	<form th:action="@{/artisti}" method="POST">
 	
 		<h2>Ricerca un artista:</h2>
-        <input type='text' name='titolo' placeholder='Inserisci il cognome' /><br>
+		<form th:action="@{/artisti}" method="POST">
+        	<input type='text' name='cognome' placeholder='Inserisci il cognome' /><br>
+		</form>
         
 	</form>
 	</div>

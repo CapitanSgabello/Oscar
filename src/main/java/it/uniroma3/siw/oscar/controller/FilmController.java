@@ -5,11 +5,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.siw.oscar.controller.validator.FilmValidator;
+import it.uniroma3.siw.oscar.model.Artista;
+import it.uniroma3.siw.oscar.model.Film;
 import it.uniroma3.siw.oscar.service.FilmService;
 
 
@@ -30,10 +35,53 @@ public class FilmController {
 		model.addAttribute("films", this.filmService.tutti());
 		return "films.html";
 	}
+
+	@RequestMapping(value = "/film", method = RequestMethod.POST)
+	public String getFilmsByTitolo(@RequestParam("titolo") String titolo, Model model) {
+		titolo = titolo.toLowerCase();
+		titolo = titolo.substring(0, 1).toUpperCase() + titolo.substring(1);
+		model.addAttribute("films", this.filmService.cercaPerTitolo(titolo));
+		return "films.html";
+	}
 	
 	@RequestMapping(value = "/film/{id}", method = RequestMethod.GET)
 	public String getFilm(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("film", this.filmService.filmPerId(id));
 		return "film.html";
+	}
+	
+	@RequestMapping(value="/addFilm", method = RequestMethod.GET)
+	public String addFilm(Model model) {
+		logger.debug("addFilm");
+		model.addAttribute("film", new Film());
+		model.addAttribute("artisti", this.filmService.tutti());
+		return "filmForm.html";
+	}
+	
+	@RequestMapping(value = "/newFilm", method = RequestMethod.POST)
+	public String newFilm(@ModelAttribute("artista") Film film, 
+			Model model, BindingResult bindingResult) {
+		this.filmValidator.validate(film, bindingResult);
+		if (!bindingResult.hasErrors()) {
+			this.filmService.save(film);
+			model.addAttribute("films", this.filmService.tutti());
+			return "films.html";
+		}
+		return "filmForm.html";
+	}
+
+	@RequestMapping(value="/deleteFilm", method = RequestMethod.GET)
+	public String deleteFilm(Model model) {
+		logger.debug("deleteFilm");
+		model.addAttribute("films", this.filmService.tutti());
+		return "filmDelete.html";
+	}
+	
+	@RequestMapping(value = "/deleteFilm", method = RequestMethod.POST)
+	public String delete(@RequestParam("filmId") Long filmId, 
+			Model model) {
+		Film film = this.filmService.filmPerId(filmId);
+		this.filmService.delete(film);
+		return "admin/home";
 	}
 }

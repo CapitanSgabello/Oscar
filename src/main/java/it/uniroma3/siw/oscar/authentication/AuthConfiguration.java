@@ -46,9 +46,9 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/", "/index",  "/css/**", "/images/**", "/edizioni/**", "/edizione/**",
                 							  "/categorie/**", "/categoriaA/**", "/categoriaF/**", "/categoriaFilm/**", "/categorieFilm/**",
                 							  "/categoriaArtista/**",  "/categorieArtisti/**", "/film/**", "/films/**", "/artista/**",
-                							  "/artisti/**",  "/loginForm/**", "/registrazione/**", "/login/**", "/logout/**").permitAll()
+                							  "/newFilm/**", "/artisti/**",  "/loginForm/**", "/registrazione/**", "/login/**", "/logout/**").permitAll()
                 // chiunque (autenticato o no) può mandare richieste POST al punto di accesso per login e register 
-                .antMatchers(HttpMethod.POST, "/login/**", "/registrazione/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/login/**", "/registrazione/**", "/artisti/**", "/film/**").permitAll()
                 // solo gli utenti autenticati con ruolo ADMIN possono accedere a risorse con path /admin/**
                 .antMatchers(HttpMethod.GET, "/admin/**").hasAnyAuthority(ADMIN_ROLE)
                 .antMatchers(HttpMethod.POST, "/admin/**").hasAnyAuthority(ADMIN_ROLE)
