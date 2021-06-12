@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="fragments/base.html :: headerfiles(title=#{title.index})">
+		<meta name = "viewport" content="width = device-width, initial-scale = 1" />
+	</head>
+<body>
+	<header th:replace="fragments/base.html :: intestazione"></header>
+	</div>
+	<form th:action="@{/artisti}" method="POST">
+		<ul>
+		<form>
+ 			<input type="text" name="cognome" placeholder="Search..">
+		</form>
+     
+    	</ul>
+	</form>
+	<div>
+    	<h4>Artisti:</h4>
+		<ul>
+			<li th:each="artista : ${artisti}">
+				<a href="artista.html" 
+				   th:href="@{'/artista' + '/' + ${artista.id}}" 
+				   th:text="|${artista.nome} ${artista.cognome}|">Nome Cognome</a>
+			</li>
+		</ul>
+	</div>
+	    <footer th:replace="fragments/base.html :: fondo"></footer>
+</body>
+</html>

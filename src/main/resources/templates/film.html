@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="fragments/base.html :: headerfiles(title=#{title.index})">
+		<meta name = "viewport" content="width = device-width, initial-scale = 1" />
+	</head>
+<body>
+	<header th:replace="fragments/base.html :: intestazione"></header>
+	
+	<div>
+		<h2 th:text="'Film ' + ${film.titolo}"></h2>
+		<strong> Regista: </strong> <a th:href="@{'/artista' + '/' + ${film.regista.id}}" th:text="|${film.regista.nome} ${film.regista.cognome}|"> Nome Cognome</a><br>
+		<strong> Genere:  </strong> <a th:href="@{'/film/genere' + '/' + ${film.genere}}"th:text="${film.genere}"> Genere </a><br>
+		<strong> Data di uscita: </strong> <span th:text="${film.dataUscita}"> </span><br>
+		<ul>
+			<div th:if="!${film.categorieVinte.empty}"> 
+				<li>
+					<strong>Ecco tutte le categorie che ha vinto:</strong>
+						<div th:each="categoria : ${film.categorieVinte}">
+							<a th:href="@{'/categoriaF' + '/' + ${categoria.id}}" 
+        						th:text="|${categoria.nome} ${categoria.edizione.anno}|">Nome anno</a><br>
+        				</div>
+        		</li>
+			</div>
+		<li>
+			<strong>Attori che hanno recitato nel film:</strong>
+			 <div th:each="attore : ${film.attori}">
+			   <a href="artista.html" 
+				   th:href="@{'/artista' + '/' + ${attore.id}}" 
+				   th:text="|${attore.nome} ${attore.cognome}|">Nome Cognome</a> 
+		     </div> 
+		</li>
+		<li> 
+			<strong>Operatori che hanno lavorato a questo film:</strong>
+			 <div th:each="operatore : ${film.operatoriTecnici}">
+			   <a href="operatore.html" 
+				   th:href="@{'/artista' + '/' + ${operatore.id}}" 
+				   th:text="|${operatore.nome} ${operatore.cognome}|">Nome Cognome</a> 
+		     </div> 
+		</li> 
+		</ul>
+	</div>
+    <footer th:replace="fragments/base.html :: fondo"></footer>
+</body>
+</html>

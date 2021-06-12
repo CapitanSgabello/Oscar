@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="fragments/base.html :: headerfiles(title=#{title.index})">
+		<meta name = "viewport" content="width = device-width, initial-scale = 1" />
+	</head>
+<body>
+	<header th:replace="fragments/base.html :: intestazione"></header>
+	</div>
+	<form th:action="@{/films}" method="POST">
+		<ul>
+        	<label>Titolo:</label> <input type='text' name='titolo' />
+        	<input type="submit" value="cerca">
+    	</ul>
+	</form>
+	<div>
+    	<h4>Film:</h4>
+		<ul>
+			<li th:each="film : ${films}">
+				<a href="film.html" 
+				   th:href="@{'/film' + '/' + ${film.id}}" 
+				   th:text="${film.titolo} ">Titolo</a>
+			</li>
+		</ul>
+	</div>
+	    <footer th:replace="fragments/base.html :: fondo"></footer>
+</body>
+</html>

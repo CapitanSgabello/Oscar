@@ -3,6 +3,23 @@ body {
     font-family: 'Tahoma';
 }
 
+input[type=text2] {
+  width: 130px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+  background-image: url('searchicon.png');
+  background-position: 10px 10px; 
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+  transition: width 0.4s ease-in-out;
+}
+
+input[type=text2]:focus {
+  width: 100%;
+}
 .button {
   display: inline-block;
   border-radius: 4px;
@@ -13,6 +30,7 @@ body {
   font-size: 28px;
   padding: 20px;
   width: 250px;
+  max-width: 500px;
   transition: all 0.5s;
   cursor: pointer;
   margin: 5px;
@@ -121,6 +139,7 @@ header > h1 {
 
 
 footer {
+	background: no-repeat left/cover url(/images/oscar1.jpg);
     border-top-style: outset;
     margin-top: 2em;
 	}

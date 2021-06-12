@@ -17,9 +17,22 @@
 			<strong>Cognome: </strong><span th:text="*{cognome}">Cognome</span><br><br>
     	</div>
    	</div>
-
-	<footer th:fragment="fondo">
-		<a th:href="@{/}">Go to the Homepage</a>
-	</footer>
+   	
+   	<div th:fragment="login">
+   		<form th:action="@{/login}" method="GET">
+        	<button class="button" style="vertical-align:middle"><span>Login </span></button><br>
+		</form>
+   	</div>
+   	
+   	<div th:fragment="logout">
+   		<form th:action="@{/logout}" method="GET">
+        	<button class="button" style="vertical-align:middle"><span>Logout </span></button><br>
+		</form>
+   	</div>
+   	<footer th:fragment="fondo">
+		<form th:action="@{/}" method="GET">
+        	<button class="button" style=" width:75%"><span>Vai alla Homepage </span></button><br>
+		</form>
+	</footer>	
 </body>
 </html>

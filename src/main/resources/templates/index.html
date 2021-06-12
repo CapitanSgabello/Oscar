@@ -19,17 +19,9 @@
 	<form th:action="@{/index}" method="GET">
         <button class="button" style="vertical-align:middle"><span>Attori e Registi </span></button><br>
 	</form>
-	<form th:action="@{/index}" method="GET">
-        <button class="button" style="vertical-align:middle"><span>Login </span></button><br>
-	</form>
 	
-	<div id="img-container">
-		<span id="img1" class="img-item"> </span>
-		<span id="img2" class="img-item"> </span>
-		<span id="img3" class="img-item"> </span>
-		<span id="img4" class="img-item"> </span>
-	</div>
-
-    <footer th:replace="fragments/base.html :: fondo"></footer>
+	<div th:if="${utente}" th:replace="fragments/base.html :: logout">	</div>
+	<div th:unless="${utente}" th:replace="fragments/base.html :: login"> </div>
+	<footer th:replace="fragments/base.html :: fondo"></footer>
 </body>
 </html>

@@ -59,12 +59,12 @@ public class Artista {
 	private List<Film> filmRealizzati;
 	
 	public Artista() {
-	  this.categorieCandidate=new ArrayList();
-	  this.categorieVinte=new ArrayList();
-	  this.edizioniPresentate=new ArrayList();
-	  this.filmDiretti=new ArrayList();
-	  this.filmRealizzati=new ArrayList();
-	  this.filmRealizzati=new ArrayList();
+	  this.categorieCandidate=new ArrayList<>();
+	  this.categorieVinte=new ArrayList<>();
+	  this.edizioniPresentate=new ArrayList<>();
+	  this.filmDiretti=new ArrayList<>();
+	  this.filmRealizzati=new ArrayList<>();
+	  this.filmRealizzati=new ArrayList<>();
 	}
 
 	public Long getId() {

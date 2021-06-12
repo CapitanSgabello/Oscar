@@ -31,7 +31,7 @@ public class CategoriaArtista {
 	private List<Artista> candidati;
 	
 	public CategoriaArtista() {
-		this.candidati=new ArrayList();
+		this.candidati=new ArrayList<>();
 	}
 
 	public Long getId() {
