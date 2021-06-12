@@ -3,6 +3,14 @@ body {
     font-family: 'Tahoma';
 }
 
+.center {
+    text-align: center;
+}
+
+a {
+	font-size: 20px;
+}
+
 input[type=text2] {
   width: 130px;
   box-sizing: border-box;
@@ -20,6 +28,27 @@ input[type=text2] {
 input[type=text2]:focus {
   width: 100%;
 }
+
+input[type=text] {
+  width: 20%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 20px;
+}
+
+input[type=password] {
+  width: 20%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 20px;
+}
+
 .button {
   display: inline-block;
   border-radius: 4px;
@@ -30,7 +59,6 @@ input[type=text2]:focus {
   font-size: 28px;
   padding: 20px;
   width: 250px;
-  max-width: 500px;
   transition: all 0.5s;
   cursor: pointer;
   margin: 5px;
@@ -139,9 +167,8 @@ header > h1 {
 
 
 footer {
-	background: no-repeat left/cover url(/images/oscar1.jpg);
     border-top-style: outset;
     margin-top: 2em;
-	}
+}
 	
 span.input {width: 30%;}

@@ -7,7 +7,7 @@
 	<header th:replace="fragments/base.html :: intestazione"></header>
 	
 	<div>
-    	<h2>Ecco tutte le categorie:</h2>
+    	<h1>Categorie:</h1>
 		<div th:each="categoria : ${categorieFilm}">
 			<form th:action="@{'/categoriaFilm' + '/' + ${categoria}}" method="GET">
         		<button class="button" style="vertical-align:middle"><span th:text="${categoria}">Nome</span></button><br>

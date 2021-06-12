@@ -5,23 +5,22 @@
 	</head>
 <body>
 	<header th:replace="fragments/base.html :: intestazione"></header>
-	</div>
+	<div class="center">
 	<form th:action="@{/films}" method="POST">
-		<ul>
-        	<label>Titolo:</label> <input type='text' name='titolo' />
-        	<input type="submit" value="cerca">
-    	</ul>
+	
+	<h2>Ricerca un film:</h2>
+        <input type='text' name='titolo' placeholder='Inserisci il titolo' /><br>
+        
 	</form>
-	<div>
-    	<h4>Film:</h4>
-		<ul>
+	</div>
+	<div><ul>
+    	<h1>Film:</h1>
 			<li th:each="film : ${films}">
 				<a href="film.html" 
 				   th:href="@{'/film' + '/' + ${film.id}}" 
 				   th:text="${film.titolo} ">Titolo</a>
 			</li>
-		</ul>
-	</div>
-	    <footer th:replace="fragments/base.html :: fondo"></footer>
+		</ul></div>
+<footer th:replace="fragments/base.html :: fondo"></footer>
 </body>
 </html>
