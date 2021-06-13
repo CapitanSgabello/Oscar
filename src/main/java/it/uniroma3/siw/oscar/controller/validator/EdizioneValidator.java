@@ -27,7 +27,6 @@ public class EdizioneValidator implements Validator{
 	@Override
 	public void validate(Object target, Errors errors) {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "anno", "required");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "presentatore", "required");
 		
 		if(!errors.hasErrors()) {
 			logger.debug("I valori inseriti sono validi.");

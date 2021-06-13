@@ -25,16 +25,16 @@
    	</div>
    	
    	<div th:fragment="logout">
-   		<form th:action="@{/default}" method="GET">
-        	<button class="button" style="vertical-align:middle"><span>Area Personale </span></button><br>
-		</form>
    		<form th:action="@{/logout}" method="GET">
         	<button class="button" style="vertical-align:middle"><span>Logout </span></button><br>
 		</form>
    	</div>
    	<footer th:fragment="fondo">
 		<form th:action="@{/}" method="GET">
-        	<button class="button" style="font-size: 15px";><span>Vai alla Homepage </span></button><br>
+        	<button class="button" style="font-size: 15px";><span>Vai alla Homepage </span></button>
+		</form>
+		<form th:action="@{/default}" method="GET">
+        	<button class="button" style="font-size: 15px"><span>Area Personale </span></button>
 		</form>
 	</footer>	
 </body>

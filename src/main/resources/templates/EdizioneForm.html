@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title=#{title.formEdizione})"> </head>
+<body>
+	<header th:replace="fragments/base.html :: intestazione"></header>
+	<div>
+		<h4>Inserisci l'anno dell'Edizione</h4>
+	</div>
+	<form th:action="@{'/newEdizione' + '/' + ${presentatoreId}}" method="POST" th:object="${edizione}">
+		<div th:if="${#fields.hasGlobalErrors()}">
+  			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+		</div>		
+		<div>
+			<div>
+				<span>Anno:</span>
+				<span><input type="text" th:field="*{anno}" /></span>
+				<span th:if="${#fields.hasErrors('anno')}" th:errors="*{anno}"></span>
+			</div>		
+			<div>
+				<span><button type="submit">Invio</button></span>
+			</div>
+		</div>
+	</form>
+	 <footer th:replace="fragments/base.html :: fondo"></footer>
+</body>
+</html>

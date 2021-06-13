@@ -1,18 +1,25 @@
 package it.uniroma3.siw.oscar.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import it.uniroma3.siw.oscar.controller.validator.CategoriaFilmValidator;
-import it.uniroma3.siw.oscar.controller.validator.EdizioneValidator;
+import it.uniroma3.siw.oscar.model.Artista;
+import it.uniroma3.siw.oscar.model.CategoriaArtista;
+import it.uniroma3.siw.oscar.model.CategoriaFilm;
+import it.uniroma3.siw.oscar.model.Credenziali;
+import it.uniroma3.siw.oscar.model.Film;
 import it.uniroma3.siw.oscar.service.CategoriaFilmService;
-import it.uniroma3.siw.oscar.service.EdizioneService;
 
 @Controller
 public class CategoriaFilmController {
@@ -39,9 +46,74 @@ public class CategoriaFilmController {
 	}
 
 	@RequestMapping(value = "/categoriaF/{id}", method = RequestMethod.GET)
-	public String getCategoriaFilm(@PathVariable("id") Long id, Model model) {
+	public String getCategoriaFilm(@PathVariable("id") Long id, Model model, HttpServletRequest request) {
 		model.addAttribute("categoriaFilm", this.categoriaFilmService.categoriaFilmPerId(id));
+		if(request.getUserPrincipal() != null) {
+			Credenziali credenziali = categoriaFilmService.getCredenziali(request.getUserPrincipal().getName());
+
+			if (credenziali.getRuolo().equals(Credenziali.ADMIN_ROLE)) {
+				model.addAttribute("admin", true);
+			}
+		}
 		return "categoriaFilm.html";
 	}
+	
+	@RequestMapping(value="/addCategoriaFilm", method = RequestMethod.GET)
+	public String addCategoriaFilm(Model model) {
+		logger.debug("addCategoriaFilm");
+		model.addAttribute("categoriaFilm", new CategoriaArtista());
+		model.addAttribute("edizioni", this.categoriaFilmService.tutteLeEdizioni());
+		return "CategoriaFilmForm.html";
+	}
+	
+	@RequestMapping(value = "/categoriaFilm", method = RequestMethod.POST)
+	public String newCategoriaFilm(@ModelAttribute("categoriaFilm") CategoriaFilm categoria, 
+			Model model, BindingResult bindingResult) {
+		this.categoriaFilmValidator.validate(categoria, bindingResult);
+		if (!bindingResult.hasErrors()) {
+			this.categoriaFilmService.save(categoria);
+			model.addAttribute("categorieFilm", this.categoriaFilmService.tutti());
+			return "categorieFilm.html";
+		}
+		model.addAttribute("edizioni", this.categoriaFilmService.tutteLeEdizioni());
+		return "CategoriaFilmForm.html";
+	}
+	
+	@RequestMapping(value="/addVincitoreToCategoriaF/{id}", method = RequestMethod.GET)
+	public String addVincitoreToCategoriaF(@PathVariable("id") Long id, Model model) {
+		logger.debug("addVincitoreToCategoriaF");
+		CategoriaFilm categoria = categoriaFilmService.categoriaFilmPerId(id);
+		model.addAttribute("categoriaFilm", categoria);
+		model.addAttribute("candidati", categoria.getCandidati());
+		return "vincitoreFilmForm.html";
+	}
+	
+	@RequestMapping(value = "/newVincitoreToCategoriaF", method = RequestMethod.POST)
+	public String newVincitoreToCategoriaF(@ModelAttribute("categoriaFilm") CategoriaFilm categoria, Model model) {
+		this.categoriaFilmService.save(categoria);
+		model.addAttribute("categoriaFilm", categoria);
+		model.addAttribute("admin", true);
+		return "categoriaFilm.html";
+	}
+	
+	@RequestMapping(value="/addCandidatoToCategoriaF/{id}", method = RequestMethod.GET)
+	public String addCandidatoToCategoriaF(@PathVariable("id") Long id, Model model) {
+		logger.debug("addCandidatoToCategoriaF");
+		model.addAttribute("categoriaFilmId", id);
+		model.addAttribute("films", this.categoriaFilmService.tuttiIFilm());
+		return "candidatoFilmForm.html";
+	}
+	
+	@RequestMapping(value = "/newCandidatoInCategoriaF/{categoriaFilmId}/{candidatoId}", method = RequestMethod.GET)
+	public String newCandidatoInCategoriaF(@PathVariable("categoriaFilmId") Long categoriaId, @PathVariable("candidatoId") Long candidatoId, Model model) {
+		Film candidato = this.categoriaFilmService.filmPerId(candidatoId);
+		CategoriaFilm categoria = this.categoriaFilmService.categoriaFilmPerId(categoriaId);
+		categoria.getCandidati().add(candidato);
+		this.categoriaFilmService.save(categoria);
+		model.addAttribute("categoriaFilm", categoria);
+		model.addAttribute("admin", true);
+		return "categoriaFilm.html";
+	}
+
 
 }

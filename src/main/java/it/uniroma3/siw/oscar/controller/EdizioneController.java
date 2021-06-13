@@ -5,11 +5,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import it.uniroma3.siw.oscar.controller.validator.EdizioneValidator;
+import it.uniroma3.siw.oscar.model.Edizione;
+import it.uniroma3.siw.oscar.model.Film;
 import it.uniroma3.siw.oscar.service.EdizioneService;
 
 @Controller
@@ -34,5 +38,34 @@ public class EdizioneController {
 		model.addAttribute("edizione", this.edizioneService.edizionePerId(id));
 		return "edizione.html";
 	}
+	
+	@RequestMapping(value="/addEdizione", method = RequestMethod.GET)
+	public String addEdizione(Model model) {
+		logger.debug("addEdizione");
+		model.addAttribute("artisti", this.edizioneService.tuttiArtisti());
+		return "presentatoreForm.html";
+	}
+	
+	@RequestMapping(value="/addEdizione/{presentatoreId}", method = RequestMethod.GET)
+	public String submitEdizione(@PathVariable("presentatoreId") Long id, Model model) {
+		Edizione edizione = new Edizione();
+		model.addAttribute("presentatoreId", id);
+		model.addAttribute("edizione", edizione);
+		return "EdizioneForm.html";
+	}
+	
+	@RequestMapping(value = "/newEdizione/{presentatoreId}", method = RequestMethod.POST)
+	public String newEdizione(@PathVariable("presentatoreId") Long id, @ModelAttribute("edizione") Edizione edizione, 
+			Model model, BindingResult bindingResult) {
+		this.edizioneValidator.validate(edizione, bindingResult);
+		if (!bindingResult.hasErrors()) {
+			edizione.setPresentatore(this.edizioneService.artistaPerId(id));
+			this.edizioneService.save(edizione);
+			model.addAttribute("edizioni", this.edizioneService.tutti());
+			return "edizioni.html";
+		}
+		return "edizioneForm.html";
+	}
+
 
 }

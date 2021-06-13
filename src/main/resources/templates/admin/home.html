@@ -39,7 +39,7 @@
    			</div></li>
     	</ul>
    		<div>
-			<a th:href="@{/logout}">Logout</a>
+			<div th:replace="fragments/base.html :: logout"></div> 
    		</div>
     </div>
     <footer th:replace="fragments/base.html :: fondo(home='/default')"></footer>

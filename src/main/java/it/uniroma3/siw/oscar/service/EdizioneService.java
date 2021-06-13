@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import it.uniroma3.siw.oscar.model.Artista;
 import it.uniroma3.siw.oscar.model.Edizione;
 import it.uniroma3.siw.oscar.repository.EdizioneRepository;
 
@@ -15,6 +16,9 @@ public class EdizioneService {
 	
 	@Autowired
 	private EdizioneRepository edizioneRepo;
+	
+	@Autowired
+	private ArtistaService artistaService;
 	
 	@Transactional
 	public Edizione save(Edizione edizione) {
@@ -52,6 +56,16 @@ public class EdizioneService {
 			return true;
 		else 
 			return false;
+	}
+	
+	@Transactional
+	public List<Artista> tuttiArtisti(){
+		return this.artistaService.tutti();
+	}
+	
+	@Transactional
+	public Artista artistaPerId(Long id) {
+		return this.artistaService.artistaPerId(id);
 	}
 
 	

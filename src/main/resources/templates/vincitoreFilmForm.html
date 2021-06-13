@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title=#{title.formCategoriaArtista})"> </head>
+<body>
+	<header th:replace="fragments/base.html :: intestazione"></header>
+	<div>
+		<h4>Inserisci i dati della Categoria</h4>
+	</div>
+	<form th:action="@{/newVincitoreToCategoriaF}" method="POST" th:object="${categoriaFilm}">
+		<div th:if="${#fields.hasGlobalErrors()}">
+  			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+		</div>		
+		<div>	
+			<div>
+				<span>Vincitore:</span>
+				<select th:field="*{vincitore}">
+    				<option th:each="candidato : ${candidati}" th:value="${candidato.id}" th:text="${candidato.titolo}">
+    				</option>
+				</select>
+			</div>
+			<input type="hidden" th:value="${categoriaFilm.id}" th:field="*{id}" />
+			<input type="hidden" th:value="${categoriaFilm.nome}" th:field="*{nome}" />
+			<input type="hidden" th:value="${categoriaFilm.edizione}" th:field="*{edizione}" />
+			<input type="hidden" th:value="${categoriaFilm.candidati}" th:field="*{candidati}" />
+			<div>
+				<span><button type="submit">Invio</button></span>
+			</div>
+		</div>
+	</form>
+	 <footer th:replace="fragments/base.html :: fondo"></footer>
+</body>
+</html>
