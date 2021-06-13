@@ -52,7 +52,7 @@ public class Artista {
 	@ManyToMany(mappedBy="attori")
 	private List<Film> filmRecitati;
 	
-	@OneToMany
+	@OneToMany(mappedBy="regista")
 	private List<Film> filmDiretti;
 
 	@ManyToMany(mappedBy="operatoriTecnici")

@@ -29,6 +29,11 @@
 				   th:text="|${attore.nome} ${attore.cognome}|">Nome Cognome</a> 
 		     </div> 
 		</li>
+		<div th:if="${admin}"> 
+			<ul><li>
+				<a th:href="@{'/addAttoreToFilm' + '/' + ${film.id}}">Aggiungi un attore a questo film</a>
+			</li></ul>
+		</div>
 		<li> 
 			<strong>Operatori che hanno lavorato a questo film:</strong>
 			 <div th:each="operatore : ${film.operatoriTecnici}">
@@ -36,7 +41,12 @@
 				   th:href="@{'/artista' + '/' + ${operatore.id}}" 
 				   th:text="|${operatore.nome} ${operatore.cognome}|">Nome Cognome</a> 
 		     </div> 
-		</li> 
+		</li>
+		<div th:if="${admin}"> 
+			<ul><li>
+				<a th:href="@{'/addOperatoreToFilm' + '/' + ${film.id}}">Aggiungi un operatore tecnico a questo film</a>
+			</li></ul>
+		</div>
 		</ul>
 	</div>
     <footer th:replace="fragments/base.html :: fondo"></footer>

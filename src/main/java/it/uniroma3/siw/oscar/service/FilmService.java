@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import it.uniroma3.siw.oscar.model.Artista;
+import it.uniroma3.siw.oscar.model.Credenziali;
 import it.uniroma3.siw.oscar.model.Film;
 import it.uniroma3.siw.oscar.repository.FilmRepository;
 
@@ -19,6 +20,9 @@ public class FilmService {
 	
 	@Autowired
 	private ArtistaService artistaService;
+	
+	@Autowired
+	private CredenzialiService credenzialiService;
 	
 	@Transactional
 	public Film save(Film film) {
@@ -76,6 +80,11 @@ public class FilmService {
 	@Transactional
 	public Artista artistaPerId(Long id) {
 		return this.artistaService.artistaPerId(id);
+	}
+	
+	@Transactional
+	public Credenziali getCredenziali(String username) {
+		return this.credenzialiService.getCredenziali(username);
 	}
 	
 

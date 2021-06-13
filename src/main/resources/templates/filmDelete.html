@@ -6,12 +6,12 @@
 	<div>
 		<h4>Selezione quale artista rimuovere</h4>
 	</div>
-	<form th:action="@{/deleteArtista}" method="POST" th:object="${artisti}">	
+	<form th:action="@{/deleteFilm}" method="POST" th:object="${films}">	
 	
 			<div>
 				<span>Artisti:</span>
-				<select name='artistaId'>
-    				<option th:each="artista : ${artisti}" th:value="${artista.id}" th:text="|${artista.nome} ${artista.cognome}|">
+				<select name='filmId'>
+    				<option th:each="film : ${films}" th:value="${film.id}" th:text="|${film.titolo} ${film.dataUscita}|">
     				</option>
 				</select>
 			</div>

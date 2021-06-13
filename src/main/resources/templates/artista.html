@@ -18,16 +18,15 @@
 			<div th:unless="${artista.dataMorte}">Artista in vita</div>
 			<img th:src="*{imageUrl}">
 		<ul>
-			<li>
-				<div th:if="!${artista.categorieVinte.empty}"> 
+			<div th:if="!${artista.categorieVinte.empty}"> 
+				<li>
 					<strong>Ecco tutte le categorie che ha vinto:</strong>
-						<div th:each="categoria : ${artista.categorieVinte}">
-							<a th:href="@{'/categoriaA' + '/' + ${categoria.id}}" 
-        						th:text="|${categoria.nome} ${categoria.edizione.anno}|">Nome anno</a><br>
-        				</div>
-        		</div>
-        	</li>
-			
+					<div th:each="categoria : ${artista.categorieVinte}">
+						<a th:href="@{'/categoriaA' + '/' + ${categoria.id}}" 
+        					th:text="|${categoria.nome} ${categoria.edizione.anno}|">Nome anno</a><br>
+        			</div>
+        		</li>
+        	</div>
 			<div th:if="!${artista.filmRecitati.empty}">
 				<li>
 					<strong>Film in cui ha recitato:</strong>
