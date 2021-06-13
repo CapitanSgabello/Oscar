@@ -62,15 +62,15 @@ public class FilmController {
 		Film film = new Film();
 		model.addAttribute("registaId", id);
 		model.addAttribute("film", film);
-		
 		return "filmForm.html";
 	}
 	
-	@RequestMapping(value = "/newFilm", method = RequestMethod.POST)
-	public String newFilm(@ModelAttribute("film") Film film, 
+	@RequestMapping(value = "/newFilm/{registaId}", method = RequestMethod.POST)
+	public String newFilm(@PathVariable("registaId") Long id, @ModelAttribute("film") Film film, 
 			Model model, BindingResult bindingResult) {
 		this.filmValidator.validate(film, bindingResult);
 		if (!bindingResult.hasErrors()) {
+			film.setRegista(this.filmService.artistaPerId(id));
 			this.filmService.save(film);
 			model.addAttribute("films", this.filmService.tutti());
 			return "films.html";

@@ -6,7 +6,7 @@
 	<div>
 		<h4>Inserisci i dati del film</h4>
 	</div>
-	<form th:action="@{/newFilm}" method="POST" th:object="${film}">
+	<form th:action="@{'/newFilm' + '/' + ${registaId}}" method="POST" th:object="${film}">
 		<div th:if="${#fields.hasGlobalErrors()}">
   			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
 		</div>		
