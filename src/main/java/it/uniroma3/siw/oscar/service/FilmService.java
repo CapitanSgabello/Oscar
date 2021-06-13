@@ -17,6 +17,9 @@ public class FilmService {
 	@Autowired
 	private FilmRepository filmRepo;
 	
+	@Autowired
+	private ArtistaService artistaService;
+	
 	@Transactional
 	public Film save(Film film) {
 		return filmRepo.save(film);
@@ -64,7 +67,16 @@ public class FilmService {
 		else 
 			return false;
 	}
-
+	
+	@Transactional
+	public List<Artista> tuttiArtisti(){
+		return this.artistaService.tutti();
+	}
+	
+	@Transactional
+	public Artista artistaPerId(Long id) {
+		return this.artistaService.artistaPerId(id);
+	}
 	
 
 }

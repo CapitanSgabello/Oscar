@@ -28,7 +28,6 @@ public class FilmValidator implements Validator{
 	public void validate(Object target, Errors errors) {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "titolo", "required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "genere", "required");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "regista", "required");
 		
 		if(!errors.hasErrors()) {
 			logger.debug("I valori inseriti sono validi.");

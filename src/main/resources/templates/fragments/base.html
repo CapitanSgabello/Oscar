@@ -25,6 +25,9 @@
    	</div>
    	
    	<div th:fragment="logout">
+   		<form th:action="@{/default}" method="GET">
+        	<button class="button" style="vertical-align:middle"><span>Area Personale </span></button><br>
+		</form>
    		<form th:action="@{/logout}" method="GET">
         	<button class="button" style="vertical-align:middle"><span>Logout </span></button><br>
 		</form>

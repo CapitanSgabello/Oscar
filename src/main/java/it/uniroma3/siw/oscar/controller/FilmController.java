@@ -53,13 +53,21 @@ public class FilmController {
 	@RequestMapping(value="/addFilm", method = RequestMethod.GET)
 	public String addFilm(Model model) {
 		logger.debug("addFilm");
-		model.addAttribute("film", new Film());
-		model.addAttribute("artisti", this.filmService.tutti());
+		model.addAttribute("artisti", this.filmService.tuttiArtisti());
+		return "registaForm.html";
+	}
+	
+	@RequestMapping(value="/addFilm/{registaId}", method = RequestMethod.GET)
+	public String submitFilm(@PathVariable("registaId") Long id, Model model) {
+		Film film = new Film();
+		model.addAttribute("registaId", id);
+		model.addAttribute("film", film);
+		
 		return "filmForm.html";
 	}
 	
 	@RequestMapping(value = "/newFilm", method = RequestMethod.POST)
-	public String newFilm(@ModelAttribute("artista") Film film, 
+	public String newFilm(@ModelAttribute("film") Film film, 
 			Model model, BindingResult bindingResult) {
 		this.filmValidator.validate(film, bindingResult);
 		if (!bindingResult.hasErrors()) {

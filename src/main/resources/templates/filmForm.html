@@ -1,36 +1,39 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/base.html :: headerfiles(title=#{title.artistaDelete})"> </head>
+<head th:replace="fragments/base.html :: headerfiles(title=#{title.formFilm})"> </head>
 <body>
 	<header th:replace="fragments/base.html :: intestazione"></header>
-
-  <div>
-    <h2>Seleziona il regista:</h2>
-    <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search.." title="Type in a category">
-    <ul id="myMenu"> 
-    	<div th:each="film : ${artisti}">
-	  		<li><a href="#" th:text="${film.titolo}">Titolo</a></li>
-    	</div>
-    </ul>
-  </div>
-
-<script>
-function myFunction() {
-  var input, filter, ul, li, a, i;
-  input = document.getElementById("mySearch");
-  filter = input.value.toUpperCase();
-  ul = document.getElementById("myMenu");
-  li = ul.getElementsByTagName("li");
-  for (i = 0; i < li.length; i++) {
-    a = li[i].getElementsByTagName("a")[0];
-    if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-      li[i].style.display = "";
-    } else {
-      li[i].style.display = "none";
-    }
-  }
-}
-</script>
-
+	<div>
+		<h4>Inserisci i dati del film</h4>
+	</div>
+	<form th:action="@{/newFilm}" method="POST" th:object="${film}">
+		<div th:if="${#fields.hasGlobalErrors()}">
+  			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+		</div>		
+		<div>
+			<div>
+				<span>Titolo:</span>
+				<span><input type="text" th:field="*{titolo}" /></span>
+				<span th:if="${#fields.hasErrors('titolo')}" th:errors="*{titolo}"></span>
+			</div>		
+			<div>
+				<span>Genere:</span>
+				<span><input type="text" th:field="*{genere}" /></span>
+				<span th:if="${#fields.hasErrors('genere')}" th:errors="*{genere}"></span>
+			</div>
+			<div>
+				<span>Data di Uscita:</span>
+				<span><input type="date" th:field="*{dataUscita}" /></span>
+			</div>
+			<div>
+				<span>Locandina:</span>
+				<span><input type="text" th:field="*{imageUrl}" /></span>
+			</div>
+			<div>
+				<span><button type="submit">Invio</button></span>
+			</div>
+		</div>
+	</form>
+	 <footer th:replace="fragments/base.html :: fondo"></footer>
 </body>
 </html>

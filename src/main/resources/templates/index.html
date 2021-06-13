@@ -20,8 +20,12 @@
         <button class="button" style="vertical-align:middle"><span>Attori e Registi </span></button><br>
 	</form>
 	
-	<div th:if="${utente}" th:replace="fragments/base.html :: logout">	</div>
-	<div th:unless="${utente}" th:replace="fragments/base.html :: login"> </div>
+	<div th:if="${utente}"> 
+		<div th:replace="fragments/base.html :: logout"> </div>
+	</div>
+	<div th:unless="${utente}"> 
+		<div th:replace="fragments/base.html :: login"></div> 
+	</div>
 	<footer th:replace="fragments/base.html :: fondo"></footer>
 </body>
 </html>
