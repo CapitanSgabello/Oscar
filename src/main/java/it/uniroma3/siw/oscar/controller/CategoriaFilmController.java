@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.siw.oscar.controller.validator.CategoriaFilmValidator;
 import it.uniroma3.siw.oscar.model.Artista;
@@ -113,6 +114,20 @@ public class CategoriaFilmController {
 		model.addAttribute("categoriaFilm", categoria);
 		model.addAttribute("admin", true);
 		return "categoriaFilm.html";
+	}
+
+	@RequestMapping(value="/deleteCategoriaFilm", method = RequestMethod.GET)
+	public String deleteCategoriaFilm(Model model) {
+		logger.debug("deleteCategoriaFilm");
+		model.addAttribute("categorieFilm", this.categoriaFilmService.tutti());
+		return "categoriaFilmDelete.html";
+	}
+
+	@RequestMapping(value = "/deleteCategoriaFilm", method = RequestMethod.POST)
+	public String delete(@RequestParam("categoriaFilmId") Long categoriaFilmId, Model model) {
+		CategoriaFilm categoriaFilm = this.categoriaFilmService.categoriaFilmPerId(categoriaFilmId);
+		this.categoriaFilmService.delete(categoriaFilm);
+		return "admin/home";
 	}
 
 

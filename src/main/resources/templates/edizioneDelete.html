@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title=#{title.artistaDelete})"> </head>
+<body>
+	<header th:replace="fragments/base.html :: intestazione"></header>
+	<div>
+		<h4>Selezione quale edizione rimuovere</h4>
+	</div>
+	<form th:action="@{/deleteEdizione}" method="POST" th:object="${edizioni}">	
+	
+			<div>
+				<span>Edizioni:</span>
+				<select name='edizioneId'>
+    				<option th:each="edizione : ${edizioni}" th:value="${edizione.id}" th:text="${edizione.anno}">
+    				</option>
+				</select>
+			</div>
+			<div>
+				<span><button type="submit">Invio</button></span>
+			</div>
+		</div>
+	</form>
+	 <footer th:replace="fragments/base.html :: fondo"></footer>
+</body>
+</html>

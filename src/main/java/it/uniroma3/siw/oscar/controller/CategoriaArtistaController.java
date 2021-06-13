@@ -18,6 +18,7 @@ import it.uniroma3.siw.oscar.controller.validator.CategoriaArtistaValidator;
 import it.uniroma3.siw.oscar.model.Artista;
 import it.uniroma3.siw.oscar.model.CategoriaArtista;
 import it.uniroma3.siw.oscar.model.Credenziali;
+import it.uniroma3.siw.oscar.model.Edizione;
 import it.uniroma3.siw.oscar.service.CategoriaArtistaService;
 
 @Controller
@@ -106,6 +107,21 @@ public class CategoriaArtistaController {
 		model.addAttribute("admin", true);
 		return "categoriaArtista.html";
 	}
+
+	@RequestMapping(value="/deleteCategoriaArtista", method = RequestMethod.GET)
+	public String deleteCategoriaArtista(Model model) {
+		logger.debug("deleteCategoriaArtista");
+		model.addAttribute("categorieArtisti", this.categoriaArtistaService.tutti());
+		return "categoriaArtistaDelete.html";
+	}
+
+	@RequestMapping(value = "/deleteCategoriaArtista", method = RequestMethod.POST)
+	public String delete(@RequestParam("categoriaArtistaId") Long categoriaArtistaId, Model model) {
+		CategoriaArtista categoriaArtista = this.categoriaArtistaService.categoriaArtistaPerId(categoriaArtistaId);
+		this.categoriaArtistaService.delete(categoriaArtista);
+		return "admin/home";
+	}
+
 	
 	
 

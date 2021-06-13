@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.siw.oscar.controller.validator.EdizioneValidator;
 import it.uniroma3.siw.oscar.model.Edizione;
@@ -65,6 +66,20 @@ public class EdizioneController {
 			return "edizioni.html";
 		}
 		return "edizioneForm.html";
+	}
+
+	@RequestMapping(value="/deleteEdizione", method = RequestMethod.GET)
+	public String deleteEdizione(Model model) {
+		logger.debug("deleteEdizione");
+		model.addAttribute("edizioni", this.edizioneService.tutti());
+		return "edizioneDelete.html";
+	}
+
+	@RequestMapping(value = "/deleteEdizione", method = RequestMethod.POST)
+	public String delete(@RequestParam("edizioneId") Long edizioneId, Model model) {
+		Edizione edizione = this.edizioneService.edizionePerId(edizioneId);
+		this.edizioneService.delete(edizione);
+		return "admin/home";
 	}
 
 
