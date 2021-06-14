@@ -11,6 +11,25 @@ a {
 	font-size: 20px;
 }
 
+#sfondo-testi {
+    font-size: 20px;
+    font-family: 'Tahoma';
+    background-color: LemonChiffon;
+    width: 35%;
+    text-align: left;
+    margin: 9px 9px;
+    margin-left: 20px;
+    height: 100%;
+    box-sizing: border-box;
+    border: 3px solid rgb(99, 5, 17);
+    border-radius: 4px;
+}
+
+#flex-testo{
+    margin-left: 10px;
+    
+}
+
 input[type=text2] {
   width: 130px;
   box-sizing: border-box;
@@ -56,7 +75,7 @@ input[type=password] {
   border: none;
   color: #FFFFFF;
   text-align: center;
-  font-size: 200%;
+  font-size: 180%;
   padding: 20px;
   width: 35%;
   line-height: 200%;
