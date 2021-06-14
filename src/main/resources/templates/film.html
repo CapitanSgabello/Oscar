@@ -32,7 +32,7 @@
 			<div th:if="${admin}"> 
 				<ul><li>
 					<a th:href="@{'/addAttoreToFilm' + '/' + ${film.id}}">Aggiungi un attore a questo film</a>
-				</li></ul>
+				</li></ul><br>
 			</div>
 		<li> 
 			<strong>Operatori che hanno lavorato a questo film:</strong>
@@ -45,17 +45,18 @@
 			<div th:if="${admin}"> 
 				<ul><li>
 					<a th:href="@{'/addOperatoreToFilm' + '/' + ${film.id}}">Aggiungi un operatore tecnico a questo film</a>
-				</li></ul>
+				</li></ul><br>
 			</div>
 			<div th:if="!${film.commenti.empty}"> 
 		<li> 
-				<strong>Commenti degli Utenti:</strong>
+				<strong>Commenti degli Utenti:</strong><br><br>
 				<div th:each="commento : ${film.commenti}">
-			   		<a  th:text="${commento.testo} ">Testo</a> 
+					<strong style="font-size:20px" th:text="${commento.utente.nome}">Nome utente</strong><br>
+			   		<span style="font-size:20px" th:text="${commento.testo}">Testo</span> 
 						<div th:if="${admin}"> 
 							<ul><li>
 								<a th:href="@{'/deleteCommento' + '/' + ${commento.id}}">Rimuovi commento</a>
-							</li></ul>
+							</li></ul><br><br>
 						</div>
 				</div>
 			</div>

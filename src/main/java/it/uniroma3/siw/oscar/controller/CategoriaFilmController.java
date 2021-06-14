@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.siw.oscar.controller.validator.CategoriaFilmValidator;
-import it.uniroma3.siw.oscar.model.Artista;
 import it.uniroma3.siw.oscar.model.CategoriaArtista;
 import it.uniroma3.siw.oscar.model.CategoriaFilm;
 import it.uniroma3.siw.oscar.model.Credenziali;

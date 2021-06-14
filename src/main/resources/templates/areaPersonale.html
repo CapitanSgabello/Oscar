@@ -8,6 +8,16 @@
 	
 	<div th:replace="fragments/base.html :: DettagliPersona"></div>
 	
+	<div th:if="!${utente.commenti.empty}">
+		<strong>I tuoi Commenti:</strong>
+				<div th:each="commento : ${utente.commenti}">
+			   		<a  th:text="${commento.testo} ">Testo</a> 
+						<ul><li>
+							<a th:href="@{'/deleteCommento' + '/' + ${commento.id}}">Rimuovi commento</a>
+						</li></ul>
+				</div>
+	</div>
+	
 	<div th:replace="fragments/base.html :: logout"></div> 
 	
 	<footer th:replace="fragments/base.html :: fondo"></footer>

@@ -1,5 +1,6 @@
 package it.uniroma3.siw.oscar.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -17,10 +18,12 @@ public class Utente {
 	private String nome;
 	private String cognome;
 	
-	public Utente() {}
-	
 	@OneToMany(mappedBy="utente")
-	private List<Commento> recensioni;
+	private List<Commento> commenti;
+	
+	public Utente() {
+		this.commenti = new ArrayList<>();
+	}
 
 	public Long getId() {
 		return id;
@@ -45,6 +48,15 @@ public class Utente {
 	public void setCognome(String cognome) {
 		this.cognome = cognome;
 	}
+
+	public List<Commento> getCommenti() {
+		return commenti;
+	}
+
+	public void setCommenti(List<Commento> commenti) {
+		this.commenti = commenti;
+	}
+	
 
 	
 }

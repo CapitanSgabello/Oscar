@@ -15,7 +15,7 @@
 		</div>		
 		<div>	
 			<div>
-				<span>Testo:</span>
+				<strong>Testo:</strong><br>
 				<span><textarea name="testo" rows="5" cols="40" th:field="*{testo}" /></span>
 				<span th:if="${#fields.hasErrors('testo')}" th:errors="*{testo}"></span>
 			</div>

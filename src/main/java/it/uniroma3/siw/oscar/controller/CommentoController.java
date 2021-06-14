@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import it.uniroma3.siw.oscar.controller.validator.CommentoValidator;
 import it.uniroma3.siw.oscar.model.Commento;
+import it.uniroma3.siw.oscar.model.Credenziali;
 import it.uniroma3.siw.oscar.model.Film;
 import it.uniroma3.siw.oscar.model.Utente;
 import it.uniroma3.siw.oscar.service.CommentoService;
+import it.uniroma3.siw.oscar.service.CredenzialiService;
 
 
 @Controller
@@ -52,6 +54,9 @@ public class CommentoController {
 			this.commentoService.save(commento);
 			model.addAttribute("film", film);
 			model.addAttribute("utente", user);
+			if(this.commentoService.cercaCredenzialiPerUsername(username).getRuolo().equals(Credenziali.ADMIN_ROLE)) {
+				model.addAttribute("admin", 1); 
+			}
 			return "film.html";
 		}
 		return "commentoForm.html";
@@ -60,12 +65,25 @@ public class CommentoController {
 	
 	@RequestMapping(value = "/deleteCommento/{id}", method = RequestMethod.GET)
 	public String delete(@PathVariable("id") Long commentoId, 
-			Model model) {
+			Model model, HttpServletRequest request) {
 		Commento commento = this.commentoService.commentoPerId(commentoId);
-		model.addAttribute("film", commento.getFilm());
-		model.addAttribute("admin", 1);
-		this.commentoService.delete(commento);
-		return "film.html";
+		String username = request.getUserPrincipal().getName();
+		Credenziali credenziali = this.commentoService.cercaCredenzialiPerUsername(username);
+		if(credenziali.getRuolo().equals(Credenziali.ADMIN_ROLE)) {
+			model.addAttribute("film", commento.getFilm());
+			model.addAttribute("admin", 1);
+			this.commentoService.delete(commento);
+			
+			return "film.html";
+		} else {
+			this.commentoService.delete(commento);
+			model.addAttribute("utente", credenziali.getUtente());
+			
+			return "areaPersonale.html";
+		}
+		
+		
+		
 	}
 	
 	//eliminazione commento da utente
