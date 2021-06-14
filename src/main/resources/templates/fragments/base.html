@@ -11,10 +11,10 @@
 	</header>
 	
 	<div th:fragment="DettagliPersona">
-    	<h4>Dettagli Profilo:</h4>
+    	<h4 style="font-size:17px">Dettagli Profilo:</h4>
     	<div th:if="${utente}" th:object="${utente}">
-			<strong>Nome: </strong><span th:text="*{nome}">Nome</span><br>
-			<strong>Cognome: </strong><span th:text="*{cognome}">Cognome</span><br><br>
+			<strong style="font-size:20px">Nome: </strong><span style="font-size:20px" th:text="*{nome}">Nome</span><br>
+			<strong style="font-size:20px">Cognome: </strong><span style="font-size:20px" th:text="*{cognome}">Cognome</span><br><br>
     	</div>
    	</div>
    	
@@ -29,12 +29,17 @@
         	<button class="button" style="vertical-align:middle"><span>Logout </span></button><br>
 		</form>
    	</div>
+   	<div th:fragment="logoutPersonale">
+   		<form th:action="@{/logout}" method="GET">
+        	<button class="buttonFooter" style="vertical-align:middle"><span>Logout </span></button><br>
+		</form>
+   	</div>
    	<footer th:fragment="fondo">
 		<form th:action="@{/}" method="GET">
-        	<button class="button" style="font-size: 15px";><span>Vai alla Homepage </span></button>
+        	<button class="buttonFooter" style="font-size: 15px";><span>Vai alla Homepage </span></button>
 		</form>
 		<form th:action="@{/default}" method="GET">
-        	<button class="button" style="font-size: 15px"><span>Area Personale </span></button>
+        	<button class="buttonFooter" style="font-size: 15px"><span>Area Personale </span></button>
 		</form>
 	</footer>	
 </body>

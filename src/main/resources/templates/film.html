@@ -8,9 +8,9 @@
 	
 	<div>
 		<h1 th:text="'Film ' + ${film.titolo}"></h1>
-		<strong> Regista: </strong> <a th:href="@{'/artista' + '/' + ${film.regista.id}}" th:text="|${film.regista.nome} ${film.regista.cognome}|"> Nome Cognome</a><br>
-		<strong> Genere:  </strong> <a th:href="@{'/film/genere' + '/' + ${film.genere}}"th:text="${film.genere}"> Genere </a><br>
-		<strong> Data di uscita: </strong> <span th:text="${film.dataUscita}"> </span><br>
+		<strong style="font-size:20px"> Regista: </strong> <a th:href="@{'/artista' + '/' + ${film.regista.id}}" th:text="|${film.regista.nome} ${film.regista.cognome}|"> Nome Cognome</a><br>
+		<strong style="font-size:20px"> Genere:  </strong> <a th:href="@{'/film/genere' + '/' + ${film.genere}}"th:text="${film.genere}"> Genere </a><br>
+		<strong style="font-size:20px"> Data di uscita: </strong> <span th:text="${film.dataUscita}"> </span><br>
 		<ul>
 			<div th:if="!${film.categorieVinte.empty}"> 
 				<li>
@@ -22,12 +22,12 @@
         		</li>
 			</div>
 		<li>
-			<strong>Attori che hanno recitato nel film:</strong>
-			 <div th:each="attore : ${film.attori}">
-			   <a href="artista.html" 
+			<strong style="font-size:18px">Attori che hanno recitato nel film:</strong>
+			 <ul><div th:each="attore : ${film.attori}">
+			   <li><a href="artista.html" 
 				   th:href="@{'/artista' + '/' + ${attore.id}}" 
-				   th:text="|${attore.nome} ${attore.cognome}|">Nome Cognome</a> 
-		     </div> 
+				   th:text="|${attore.nome} ${attore.cognome}|">Nome Cognome</a></li>
+		     </div> </ul>
 		</li>
 			<div th:if="${admin}"> 
 				<ul><li>
@@ -35,12 +35,12 @@
 				</li></ul><br>
 			</div>
 		<li> 
-			<strong>Operatori che hanno lavorato a questo film:</strong>
-			 <div th:each="operatore : ${film.operatoriTecnici}">
-			   <a href="operatore.html" 
+			<strong style="font-size:18px">Operatori che hanno lavorato a questo film:</strong>
+			 <ul><div th:each="operatore : ${film.operatoriTecnici}">
+			   <li><a href="operatore.html" 
 				   th:href="@{'/artista' + '/' + ${operatore.id}}" 
-				   th:text="|${operatore.nome} ${operatore.cognome}|">Nome Cognome</a> 
-		     </div> 
+				   th:text="|${operatore.nome} ${operatore.cognome}|">Nome Cognome</a></li>
+		     </div></ul>
 		</li>
 			<div th:if="${admin}"> 
 				<ul><li>
@@ -49,7 +49,7 @@
 			</div>
 			<div th:if="!${film.commenti.empty}"> 
 		<li> 
-				<strong>Commenti degli Utenti:</strong><br><br>
+				<strong style="font-size:18px">Commenti degli Utenti:</strong><br><br>
 				<div th:each="commento : ${film.commenti}">
 					<strong style="font-size:20px" th:text="${commento.utente.nome}">Nome utente</strong><br>
 			   		<span style="font-size:20px" th:text="${commento.testo}">Testo</span> 

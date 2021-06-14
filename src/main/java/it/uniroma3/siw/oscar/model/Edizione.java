@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Edizione {
+public class Edizione implements Comparable<Edizione>{
 	
 	public static final String LUOGO = "Dolby Theatre, Los Angeles";
 
@@ -89,6 +89,13 @@ public class Edizione {
 	public void setPresentatore(Artista presentatore) {
 		this.presentatore = presentatore;
 	}
+
+	@Override
+	public int compareTo(Edizione o) {
+		return this.anno.compareTo(o.anno);
+	}
+	
+	
 	
 	
 	

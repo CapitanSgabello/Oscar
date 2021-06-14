@@ -1,5 +1,8 @@
 package it.uniroma3.siw.oscar.controller;
 
+import java.util.Collections;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.siw.oscar.controller.validator.EdizioneValidator;
 import it.uniroma3.siw.oscar.model.Edizione;
-import it.uniroma3.siw.oscar.model.Film;
 import it.uniroma3.siw.oscar.service.EdizioneService;
 
 @Controller
@@ -30,7 +32,9 @@ public class EdizioneController {
 
 	@RequestMapping(value = "/edizioni", method = RequestMethod.GET)
 	public String getEdizioni(Model model) {
-		model.addAttribute("edizioni", this.edizioneService.tutti());
+		List<Edizione> edizioni = this.edizioneService.tutti();
+		Collections.sort(edizioni);
+		model.addAttribute("edizioni", edizioni);
 		return "edizioni.html";
 	}
 
@@ -62,7 +66,9 @@ public class EdizioneController {
 		if (!bindingResult.hasErrors()) {
 			edizione.setPresentatore(this.edizioneService.artistaPerId(id));
 			this.edizioneService.save(edizione);
-			model.addAttribute("edizioni", this.edizioneService.tutti());
+			List<Edizione> edizioni = this.edizioneService.tutti();
+			Collections.sort(edizioni);
+			model.addAttribute("edizioni", edizioni);
 			return "edizioni.html";
 		}
 		return "edizioneForm.html";

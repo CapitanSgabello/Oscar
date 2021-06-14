@@ -14,14 +14,14 @@
 			<span><input name="password" type="password" placeholder="password" required/></span><br>
 			
 			<div>
-				<button class="button" style="vertical-align:middle" type="submit"><span>Login</span></button>
+				<button class="buttonFooter" style="vertical-align:middle" type="submit"><span>Login</span></button>
 			</div>
 		</div>
 	</form>
 	<div class="center">
 	<h2>Vuoi creare un nuovo account?</h2>
 	<form th:action="@{/registrazione}" method="GET">
-        		<button class="button" style="vertical-align:middle"><span>Registrati</span></button><br>
+        		<button class="buttonFooter" style="vertical-align:middle"><span>Registrati</span></button><br>
 	</form>
 	</div>
     <footer th:replace="fragments/base.html :: fondo(home='/')"></footer>

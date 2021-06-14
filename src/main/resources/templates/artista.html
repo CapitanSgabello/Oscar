@@ -8,50 +8,50 @@
 		<h2>Dettagli artista:</h2>
    	    	<div th:if="${artista}" th:object="${artista}">
    	    
-   	    <strong> Nome: </strong> <span th:text="${artista.nome}"> Nome </span><br>
-		<strong> Cognome: </strong> <span th:text="${artista.cognome}"> Cognome</span><br>
-		<strong> Data di nascita: </strong> <span th:text="${artista.dataNascita}"> Data Nascita</span><br>
-		<strong> Nazionalita': </strong> <span th:text="${artista.nazionalita}">  Nazionalita'</span><br>
+   	    <strong style="font-size:18px"> Nome: </strong> <span style="font-size:20px" th:text="${artista.nome}"> Nome </span><br>
+		<strong style="font-size:18px"> Cognome: </strong> <span style="font-size:20px" th:text="${artista.cognome}"> Cognome</span><br>
+		<strong style="font-size:18px"> Data di nascita: </strong> <span style="font-size:20px" th:text="${artista.dataNascita}"> Data Nascita</span><br>
+		<strong style="font-size:18px"> Nazionalita': </strong> <span style="font-size:20px" th:text="${artista.nazionalita}">  Nazionalita'</span><br>
 		<div th:if="${artista.dataMorte}">
 			<strong> Data morte: <span th:text="${artista.dataMorte}"> Data Morte</span></strong><br>
 		</div>
-			<div th:unless="${artista.dataMorte}">Artista in vita</div>
+			<div th:unless="${artista.dataMorte}"></div>
 			<img th:src="*{imageUrl}">
 		<ul>
 			<div th:if="!${artista.categorieVinte.empty}"> 
 				<li>
-					<strong>Ecco tutte le categorie che ha vinto:</strong>
-					<div th:each="categoria : ${artista.categorieVinte}">
-						<a th:href="@{'/categoriaA' + '/' + ${categoria.id}}" 
-        					th:text="|${categoria.nome} ${categoria.edizione.anno}|">Nome anno</a><br>
-        			</div>
+					<strong style="font-size:18px">Oscar vinti:</strong><br>
+					<ul><div th:each="categoria : ${artista.categorieVinte}">
+						<li><a th:href="@{'/categoriaA' + '/' + ${categoria.id}}" 
+        					th:text="|${categoria.nome} ${categoria.edizione.anno}|">Nome anno</a></li>
+        			</div></ul>
         		</li>
         	</div>
-			<div th:if="!${artista.filmRecitati.empty}">
+			<div th:if="!${artista.filmRecitati.empty}"><br>
 				<li>
-					<strong>Film in cui ha recitato:</strong>
-						<div th:each="film : ${artista.filmRecitati}">
-							<a th:href="@{'/film' + '/' + ${film.id}}" 
-        						th:text="${film.titolo}">Titolo</a><br>
-        				</div>
+					<strong style="font-size:18px">Film in cui ha recitato:</strong>
+						<ul><div th:each="film : ${artista.filmRecitati}">
+							<li><a th:href="@{'/film' + '/' + ${film.id}}" 
+        						th:text="${film.titolo}">Titolo</a></li>
+        				</div></ul>
         		</li>
         	</div>
-       		 <div th:if="!${artista.filmDiretti.empty}"> 
+       		 <div th:if="!${artista.filmDiretti.empty}"><br>
 				 <li>	
-					<strong>Film che ha diretto:</strong>
-						<div th:each="film : ${artista.filmDiretti}">
-							<a th:href="@{'/film' + '/' + ${film.id}}" 
-        						th:text="${film.titolo}">Titolo</a><br>
-        				</div>
+					<strong style="font-size:18px">Film che ha diretto:</strong>
+						<ul><div th:each="film : ${artista.filmDiretti}">
+							<li><a th:href="@{'/film' + '/' + ${film.id}}" 
+        						th:text="${film.titolo}">Titolo</a></li>
+        				</div></ul>
         		</li>
        		</div>
-        	<div th:if="!${artista.filmRealizzati.empty}"> 
+        	<div th:if="!${artista.filmRealizzati.empty}"><br>
 				 <li>	
-					<strong>Film in cui ha lavorato:</strong>
-						<div th:each="film : ${artista.filmRealizzati}">
-							<a th:href="@{'/film' + '/' + ${film.id}}" 
-        						th:text="${film.titolo}">Titolo</a><br>
-        				</div>
+					<strong style="font-size:18px">Film in cui ha lavorato:</strong>
+						<ul><div th:each="film : ${artista.filmRealizzati}">
+							<li><a th:href="@{'/film' + '/' + ${film.id}}" 
+        						th:text="${film.titolo}">Titolo</a></li>
+        				</div></ul>
         		</li>
         	</div>
 		</ul>

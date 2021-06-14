@@ -9,12 +9,12 @@
 	<div>
     	<h2 th:text="'Edizione ' + ${edizione.anno}"></h2>
 		<div>
-			<strong>Presentatore: </strong><a th:href="@{'/artista' + '/' + ${edizione.presentatore.id}}"
+			<strong style="font-size:18px">Presentatore: </strong><a th:href="@{'/artista' + '/' + ${edizione.presentatore.id}}"
 				 th:text="|${edizione.presentatore.nome} ${edizione.presentatore.cognome}|"> </a><br>
-			<strong>Luogo: </strong><span th:text="${edizione.luogo}" /> <br>
+			<strong style="font-size:18px">Luogo: </strong><span style="font-size:18px" th:text="${edizione.luogo}" /> <br><br>
 		<div th:each="categoria : ${edizione.categorieFilm}">
 			<form th:action="@{'/categoriaF' + '/' + ${categoria.id}}" method="GET">
-        		<button class="button" style="vertical-align:middle"><span th:text="${categoria.nome}">NomeCategoriaFilm</span></button><br>
+        		<button class="button" style="vertical-align:middle", "font-size:10px"><span th:text="${categoria.nome}">NomeCategoriaFilm</span></button><br>
 			</form>
 		</div>
 		<div th:each="categoria : ${edizione.categorieArtisti}">
