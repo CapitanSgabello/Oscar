@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class CategoriaFilm {
@@ -29,6 +30,7 @@ public class CategoriaFilm {
 	
 	@ManyToMany
 	private List<Film> candidati;
+	
 	
 	public CategoriaFilm() {
 		this.candidati=new ArrayList<>();

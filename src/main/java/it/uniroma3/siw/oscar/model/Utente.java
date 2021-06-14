@@ -1,9 +1,12 @@
 package it.uniroma3.siw.oscar.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Utente {
@@ -15,6 +18,9 @@ public class Utente {
 	private String cognome;
 	
 	public Utente() {}
+	
+	@OneToMany(mappedBy="utente")
+	private List<Commento> recensioni;
 
 	public Long getId() {
 		return id;

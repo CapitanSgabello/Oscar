@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="fragments/base.html :: headerfiles(title=#{title.index})">
+		<meta name = "viewport" content="width = device-width, initial-scale = 1" />
+	</head>
+<body>
+	<header th:replace="fragments/base.html :: intestazione"></header>
+	
+	<div>
+		<h4>Inserisci commento:</h4>
+	</div>
+	<form th:action="@{'/commento' +'/' + ${film.id}}" method="POST" th:object="${commento}">
+		<div th:if="${#fields.hasGlobalErrors()}">
+  			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+		</div>		
+		<div>	
+			<div>
+				<span>Testo:</span>
+				<span><textarea name="testo" rows="5" cols="40" th:field="*{testo}" /></span>
+				<span th:if="${#fields.hasErrors('testo')}" th:errors="*{testo}"></span>
+			</div>
+			<div>
+				<span><button type="submit">Pubblica Commento</button></span>
+			</div>
+		</div>
+	</form>
+	
+	<footer th:replace="fragments/base.html :: fondo"></footer>
+</body>
+</html>

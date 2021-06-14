@@ -29,11 +29,11 @@
 				   th:text="|${attore.nome} ${attore.cognome}|">Nome Cognome</a> 
 		     </div> 
 		</li>
-		<div th:if="${admin}"> 
-			<ul><li>
-				<a th:href="@{'/addAttoreToFilm' + '/' + ${film.id}}">Aggiungi un attore a questo film</a>
-			</li></ul>
-		</div>
+			<div th:if="${admin}"> 
+				<ul><li>
+					<a th:href="@{'/addAttoreToFilm' + '/' + ${film.id}}">Aggiungi un attore a questo film</a>
+				</li></ul>
+			</div>
 		<li> 
 			<strong>Operatori che hanno lavorato a questo film:</strong>
 			 <div th:each="operatore : ${film.operatoriTecnici}">
@@ -42,13 +42,31 @@
 				   th:text="|${operatore.nome} ${operatore.cognome}|">Nome Cognome</a> 
 		     </div> 
 		</li>
-		<div th:if="${admin}"> 
+			<div th:if="${admin}"> 
+				<ul><li>
+					<a th:href="@{'/addOperatoreToFilm' + '/' + ${film.id}}">Aggiungi un operatore tecnico a questo film</a>
+				</li></ul>
+			</div>
+			<div th:if="!${film.commenti.empty}"> 
+		<li> 
+				<strong>Commenti degli Utenti:</strong>
+				<div th:each="commento : ${film.commenti}">
+			   		<a  th:text="${commento.testo} ">Testo</a> 
+						<div th:if="${admin}"> 
+							<ul><li>
+								<a th:href="@{'/deleteCommento' + '/' + ${commento.id}}">Rimuovi commento</a>
+							</li></ul>
+						</div>
+				</div>
+			</div>
+		</li>			
 			<ul><li>
-				<a th:href="@{'/addOperatoreToFilm' + '/' + ${film.id}}">Aggiungi un operatore tecnico a questo film</a>
+				<a th:href="@{'/addCommento' + '/' + ${film.id}}">Aggiungi commento</a>
 			</li></ul>
-		</div>
+
 		</ul>
 	</div>
+
     <footer th:replace="fragments/base.html :: fondo"></footer>
 </body>
 </html>

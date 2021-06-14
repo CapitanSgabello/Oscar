@@ -47,11 +47,15 @@ public class Film {
 	@ManyToOne
 	private Artista regista;
 	
+	@OneToMany(mappedBy="film")
+	private List<Commento> commenti;
+	
 	public Film() {
 		this.attori=new ArrayList<>();
 		this.categorieCandidate=new ArrayList<>();
 		this.categorieVinte=new ArrayList<>();
 		this.operatoriTecnici=new ArrayList<>();
+		this.commenti=new ArrayList<>();
 	}
 
 	public Long getId() {
@@ -132,6 +136,14 @@ public class Film {
 
 	public void setRegista(Artista regista) {
 		this.regista = regista;
+	}
+	
+	public void setCommenti(List<Commento> commenti) {
+		this.commenti = commenti;
+	}
+
+	public List<Commento> getCommenti() {
+		return commenti;
 	}
 	
 	
