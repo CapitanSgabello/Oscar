@@ -1,24 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/base.html :: headerfiles(title=#{title.edizioneDelete})"> </head>
-<body>
+<body class="center">
 	<header th:replace="fragments/base.html :: intestazione"></header>
 	<div>
-		<h4>Selezione quale edizione rimuovere</h4>
+		<h4>Seleziona quale edizione rimuovere:</h4>
 	</div>
 	<form th:action="@{/deleteEdizione}" method="POST" th:object="${edizioni}">	
-	
 			<div>
-				<span>Edizioni:</span>
-				<select name='edizioneId'>
+				<select name='edizioneId' style="width: 10%">
     				<option th:each="edizione : ${edizioni}" th:value="${edizione.id}" th:text="${edizione.anno}">
     				</option>
 				</select>
-			</div>
+			</div><br>
 			<div>
-				<span><button type="submit">Invio</button></span>
+			<button class="button" 
+						style="width: 10%; line-height: 100%; font-size: small" 
+						type="submit"><span>Invio</span></button>
 			</div>
-		</div>
 	</form>
 	 <footer th:replace="fragments/base.html :: fondo"></footer>
 </body>

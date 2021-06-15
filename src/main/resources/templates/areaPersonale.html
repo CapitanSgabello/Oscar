@@ -3,14 +3,14 @@
 	<head th:replace="fragments/base.html :: headerfiles(title=#{title.areaPersonale})">
 		<meta name = "viewport" content="width = device-width, initial-scale = 1" />
 	</head>
-<body>
+<body class="center">
 	<header th:replace="fragments/base.html :: intestazione"></header>
 	<div id="sfondo-testi">
 	    <div id="flex-testo">
 			<div th:replace="fragments/base.html :: DettagliPersona"></div>
 	
 			<div th:if="!${utente.commenti.empty}">
-				<strong>I tuoi Commenti:</strong>
+				<h4 style="font-size:17px">I tuoi commenti:</h4>
 						<div th:each="commento : ${utente.commenti}">
 							<ul><li>
 							<strong th:text="${commento.film.titolo}">Titolo Film Recensito</strong>

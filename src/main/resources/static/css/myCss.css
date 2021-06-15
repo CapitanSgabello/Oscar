@@ -11,6 +11,14 @@ a {
 	font-size: 20px;
 }
 
+select {
+  width: 25%;
+  padding: 16px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #f1f1f1;
+}
+
 #flex-container {
 	display: flex;
 	align-items: flex-start;

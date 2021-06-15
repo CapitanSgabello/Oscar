@@ -1,22 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/base.html :: headerfiles(title=#{title.artistaDelete})"> </head>
-<body>
+<body class="center">
 	<header th:replace="fragments/base.html :: intestazione"></header>
 	<div>
-		<h4>Selezione quale artista rimuovere</h4>
+		<h4>Seleziona quale artista rimuovere:</h4>
 	</div>
 	<form th:action="@{/deleteArtista}" method="POST" th:object="${artisti}">	
-	
 			<div>
-				<span>Artisti:</span>
 				<select name='artistaId'>
     				<option th:each="artista : ${artisti}" th:value="${artista.id}" th:text="|${artista.nome} ${artista.cognome}|">
     				</option>
 				</select>
-			</div>
-			<div>
-				<span><button type="submit">Invio</button></span>
+			</div><br>
+			<button class="button" 
+						style="width: 10%; line-height: 100%; font-size: small" 
+						type="submit"><span>Invio</span></button>
 			</div>
 		</div>
 	</form>

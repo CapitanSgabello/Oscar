@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/base.html :: headerfiles(title=#{title.formFilm})"> </head>
-<body>
+<body class="center">
 	<header th:replace="fragments/base.html :: intestazione"></header>
 	<div>
-		<h4>Inserisci i dati del film</h4>
+		<h4>Inserisci i dati del film:</h4>
 	</div>
 	<form th:action="@{'/newFilm' + '/' + ${registaId}}" method="POST" th:object="${film}">
 		<div th:if="${#fields.hasGlobalErrors()}">
@@ -12,25 +12,27 @@
 		</div>		
 		<div>
 			<div>
-				<span>Titolo:</span>
+				<span>Titolo:</span><br>
 				<span><input type="text" th:field="*{titolo}" /></span>
 				<span th:if="${#fields.hasErrors('titolo')}" th:errors="*{titolo}"></span>
 			</div>		
 			<div>
-				<span>Genere:</span>
+				<span>Genere:</span><br>
 				<span><input type="text" th:field="*{genere}" /></span>
 				<span th:if="${#fields.hasErrors('genere')}" th:errors="*{genere}"></span>
-			</div>
+			</div><br>
 			<div>
 				<span>Data di Uscita:</span>
 				<span><input type="date" th:field="*{dataUscita}" /></span>
-			</div>
+			</div><br>
 			<div>
-				<span>Locandina:</span>
+				<span>Locandina:</span><br>
 				<span><input type="text" th:field="*{imageUrl}" /></span>
 			</div>
-			<div>
-				<span><button type="submit">Invio</button></span>
+				<div>
+				<button class="button" 
+						style="width: 10%; line-height: 100%; font-size: small" 
+						type="submit"><span>Invio</span></button>
 			</div>
 		</div>
 	</form>

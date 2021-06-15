@@ -3,9 +3,8 @@
 	<head th:replace="fragments/base.html :: headerfiles(title=#{title.commentoForm})">
 		<meta name = "viewport" content="width = device-width, initial-scale = 1" />
 	</head>
-<body>
+<body class="center">
 	<header th:replace="fragments/base.html :: intestazione"></header>
-	
 	<div>
 		<h4>Inserisci commento:</h4>
 	</div>
@@ -15,12 +14,13 @@
 		</div>		
 		<div>	
 			<div>
-				<strong>Testo:</strong><br>
 				<span><textarea name="testo" rows="5" cols="40" th:field="*{testo}" /></span>
 				<span th:if="${#fields.hasErrors('testo')}" th:errors="*{testo}"></span>
 			</div>
 			<div>
-				<span><button type="submit">Pubblica Commento</button></span>
+				<button class="button" 
+						style="width: 10%; line-height: 100%; font-size: small" 
+						type="submit"><span>Pubblica commento</span></button>
 			</div>
 		</div>
 	</form>

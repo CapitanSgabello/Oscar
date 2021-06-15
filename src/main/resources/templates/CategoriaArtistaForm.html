@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/base.html :: headerfiles(title=#{title.formCategoriaArtista})"> </head>
-<body>
+<body class="center">
 	<header th:replace="fragments/base.html :: intestazione"></header>
 	<div>
-		<h4>Inserisci i dati della Categoria</h4>
+		<h4>Inserisci i dati della Categoria:</h4>
 	</div>
 	<form th:action="@{/categoriaArtista}" method="POST" th:object="${categoriaArtista}">
 		<div th:if="${#fields.hasGlobalErrors()}">
@@ -12,19 +12,21 @@
 		</div>		
 		<div>
 			<div>
-				<span>Nome:</span>
+				<span>Nome:</span><br>
 				<span><input type="text" th:field="*{nome}" /></span>
 				<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
-			</div>		
+			</div><br>	
 			<div>
-				<span>Edizione:</span>
-				<select th:field="*{edizione}">
+				<span>Edizione:</span><br><br>
+				<select th:field="*{edizione}" style="width: 10%">
     				<option th:each="edizione : ${edizioni}" th:value="${edizione.id}" th:text="${edizione.anno}">
     				</option>
 				</select>
-			</div>
+			</div><br>
 			<div>
-				<span><button type="submit">Invio</button></span>
+				<button class="button" 
+						style="width: 10%; line-height: 100%; font-size: small" 
+						type="submit"><span>Invio</span></button>
 			</div>
 		</div>
 	</form>
