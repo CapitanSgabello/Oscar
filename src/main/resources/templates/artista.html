@@ -5,6 +5,7 @@
 	</head>
 <body>
 	<header th:replace="fragments/base.html :: intestazione"></header>
+	<div id="flex-container">
 	<div id="sfondo-testi">
 		<div th:if="${artista}" th:object="${artista}">
 			<div id="flex-testo">
@@ -18,7 +19,6 @@
 					<strong> Data morte: <span th:text="${artista.dataMorte}"> Data Morte</span></strong><br>
 				</div>
 				<div th:unless="${artista.dataMorte}"></div>
-				<img th:src="*{imageUrl}">
 			</div>
 			<ul>
 				<div th:if="!${artista.categorieVinte.empty}"> 
@@ -60,7 +60,10 @@
 			</ul>
    	    </div>
 	</div>
-	    
-	    <footer th:replace="fragments/base.html :: fondo"></footer>
+	<div id="img-container">
+		<img class="img-item" th:src="${artista.imageUrl}"/>
+	</div>
+	</div>	    
+	<footer th:replace="fragments/base.html :: fondo"></footer>
 </body>
 </html>
