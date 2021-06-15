@@ -3,11 +3,10 @@
 	<head th:replace="fragments/base.html :: headerfiles(title=#{title.edizioni})">
 		<meta name = "viewport" content="width = device-width, initial-scale = 1" />
 	</head>
-<body>
+<body class="center">
 	<header th:replace="fragments/base.html :: intestazione"></header>
-	
 	<div>
-    	<h2>Ecco tutte le edizioni degli Academy Awards:</h2>
+    	<h2>Tutte le edizioni degli Academy Awards:</h2>
 		<div th:each="edizione : ${edizioni}">
 			<form th:action="@{'/edizione' + '/' + ${edizione.id}}" method="GET">
         		<button class="button" style="vertical-align:middle"><span th:text="'Edizione ' + ${edizione.anno}">Anno</span></button><br>

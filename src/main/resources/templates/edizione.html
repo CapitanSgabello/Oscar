@@ -3,9 +3,8 @@
 	<head th:replace="fragments/base.html :: headerfiles(title=#{title.edizione})">
 		<meta name = "viewport" content="width = device-width, initial-scale = 1" />
 	</head>
-<body>
-	<header th:replace="fragments/base.html :: intestazione"></header>
-	
+<body class="center">
+	<header th:replace="fragments/base.html :: intestazione"></header>	
 	<div id="sfondo-testi">
 		<div id="flex-testo">
 	    	<h2 th:text="'Edizione ' + ${edizione.anno}"></h2>
@@ -14,6 +13,7 @@
 			<strong style="font-size:18px">Luogo: </strong><span style="font-size:18px" th:text="${edizione.luogo}" /> <br><br>
 		</div>
 	</div>
+	<h2>Categorie:</h2>
 	<div th:each="categoria : ${edizione.categorieFilm}">
 		<form th:action="@{'/categoriaF' + '/' + ${categoria.id}}" method="GET">
         	<button class="button" style="vertical-align:middle", "font-size:10px"><span th:text="${categoria.nome}">NomeCategoriaFilm</span></button><br>

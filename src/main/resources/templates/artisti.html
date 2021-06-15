@@ -3,7 +3,7 @@
 	<head th:replace="fragments/base.html :: headerfiles(title=#{title.artisti})">
 		<meta name = "viewport" content="width = device-width, initial-scale = 1" />
 	</head>
-<body>
+<body class="center">
 	<header th:replace="fragments/base.html :: intestazione"></header>
 	<div class="center">
 	<form th:action="@{/artisti}" method="POST">
@@ -15,14 +15,18 @@
         
 	</form>
 	</div>
-	<div><ul>
-    	<h2>Artisti:</h2>
+	<div id="sfondo-testi">
+		<div id="flex-testo">
+		<ul>
+    	<h2 class="center">Artisti:</h2>
 			<li th:each="artista : ${artisti}">
 				<a href="artista.html" 
 				   th:href="@{'/artista' + '/' + ${artista.id}}" 
 				   th:text="|${artista.nome} ${artista.cognome}|">Nome Cognome</a>
 			</li>
-	</ul></div>
+		</ul>
+		</div>
+	</div>
 	    <footer th:replace="fragments/base.html :: fondo"></footer>
 </body>
 </html>

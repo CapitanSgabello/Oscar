@@ -19,7 +19,6 @@
 					<strong> Data morte: <span th:text="${artista.dataMorte}"> Data Morte</span></strong><br>
 				</div>
 				<div th:unless="${artista.dataMorte}"></div>
-			</div>
 			<ul>
 				<div th:if="!${artista.categorieVinte.empty}"> 
 				<li>
@@ -58,6 +57,7 @@
 	        		</li>
 	        	</div>
 			</ul>
+			</div>
    	    </div>
 	</div>
 	<div id="img-container">

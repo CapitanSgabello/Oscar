@@ -3,19 +3,20 @@
 	<head th:replace="fragments/base.html :: headerfiles(title=#{title.films})">
 		<meta name = "viewport" content="width = device-width, initial-scale = 1" />
 	</head>
-<body>
+<body class="center">
 	<header th:replace="fragments/base.html :: intestazione"></header>
-		<div class="center">
+		<div>
 			<div th:if=${genereFilm}>
-				<h2 th:text="'Ricerca un film ' + ${genereFilm}"></h2>
+				<h2 th:text="'Ricerca un film ' + ${genereFilm} + ':'"></h2>
 			</div>
 			<div th:unless=${genereFilm}>
-    			<h2>Ricerca un film</h2>
+    			<h2>Ricerca un film:</h2>
 			</div>
     		<input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Cerca un film" title="Type in a category">
 		</div>
 		<div id="sfondo-testi">
 			<div id="flex-testo">
+				<h2 class="center">Film:</h2>
 		    	<ul id="myMenu"> 
 		    		<div th:each="film : ${films}">
 			  			<li><a style="font-size:25px" th:href="@{'/film' + '/' + ${film.id}}" 
