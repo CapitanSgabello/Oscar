@@ -11,7 +11,8 @@ import it.uniroma3.siw.oscar.model.Artista;
 public interface ArtistaRepository extends CrudRepository<Artista, Long> {
 
 	public List<Artista> findByCognome(String cognome);
-
+	
+	public List<Artista> findByNome(String nome);
+	
 	public List<Artista> findByNomeAndCognome(String nome, String cognome);
-
 }

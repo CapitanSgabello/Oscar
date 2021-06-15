@@ -35,6 +35,11 @@ public class ArtistaService {
 	public List<Artista> cercaPerNomeECognome(String nome, String cognome){
 		return artistaRepo.findByNomeAndCognome(nome, cognome);		
 	}
+	
+	@Transactional
+	public List<Artista> cercaPerNome(String nome){
+		return artistaRepo.findByNome(nome);
+	}
 
 	@Transactional
 	public List<Artista> tutti() {

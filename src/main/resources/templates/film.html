@@ -5,70 +5,72 @@
 	</head>
 <body>
 	<header th:replace="fragments/base.html :: intestazione"></header>
-	
-	<div>
+	<div id="flex-container">
 		<div id="sfondo-testi">
 			<div id="flex-testo">
-				<h1 th:text="${film.titolo}"></h1>
+				<h2 th:text="${film.titolo}"></h2>
 				<strong style="font-size:20px"> Regista: </strong> <a th:href="@{'/artista' + '/' + ${film.regista.id}}" th:text="|${film.regista.nome} ${film.regista.cognome}|"> Nome Cognome</a><br>
-				<strong style="font-size:20px"> Genere:  </strong> <a th:href="@{'/film/genere' + '/' + ${film.genere}}"th:text="${film.genere}"> Genere </a><br>
+				<strong style="font-size:20px"> Genere:  </strong> <a th:href="@{'/film/genere' + '/' + ${film.genere}}" th:text="${film.genere}"> Genere </a><br>
 				<strong style="font-size:20px"> Data di uscita: </strong> <span th:text="${film.dataUscita}"> </span><br>
-			</div>
-			<ul>
-				<div th:if="!${film.categorieVinte.empty}"> 
-					<li>
-						<strong>Ecco tutte le categorie che ha vinto:</strong>
-							<div th:each="categoria : ${film.categorieVinte}">
-								<a th:href="@{'/categoriaF' + '/' + ${categoria.id}}" 
-	        						th:text="|${categoria.nome} ${categoria.edizione.anno}|">Nome anno</a><br>
-	        				</div>
-	        		</li>
-				</div>
-			<li>
-				<strong style="font-size:18px">Attori che hanno recitato nel film:</strong>
-				 <ul><div th:each="attore : ${film.attori}">
-				   <li><a href="artista.html" 
-					   th:href="@{'/artista' + '/' + ${attore.id}}" 
-					   th:text="|${attore.nome} ${attore.cognome}|">Nome Cognome</a></li>
-			     </div> </ul>
-			</li>
-				<div th:if="${admin}"> 
-					<ul><li>
-						<a th:href="@{'/addAttoreToFilm' + '/' + ${film.id}}">Aggiungi un attore a questo film</a>
-					</li></ul><br>
-				</div>
-			<li> 
-				<strong style="font-size:18px">Operatori che hanno lavorato a questo film:</strong>
-				 <ul><div th:each="operatore : ${film.operatoriTecnici}">
-				   <li><a href="operatore.html" 
-					   th:href="@{'/artista' + '/' + ${operatore.id}}" 
-					   th:text="|${operatore.nome} ${operatore.cognome}|">Nome Cognome</a></li>
-			     </div></ul>
-			</li>
-				<div th:if="${admin}"> 
-					<ul><li>
-						<a th:href="@{'/addOperatoreToFilm' + '/' + ${film.id}}">Aggiungi un operatore tecnico a questo film</a>
-					</li></ul><br>
-				</div>
-				<div th:if="!${film.commenti.empty}"> 
-			<li> 
-					<strong style="font-size:18px">Commenti degli Utenti:</strong><br><br>
-					<div th:each="commento : ${film.commenti}">
-						<strong style="font-size:20px" th:text="${commento.utente.nome}">Nome utente</strong><br>
-				   		<span style="font-size:20px" th:text="${commento.testo}">Testo</span> 
-							<div th:if="${admin}"> 
-								<ul><li>
-									<a th:href="@{'/deleteCommento' + '/' + ${commento.id}}">Rimuovi commento</a>
-								</li></ul>
-							</div><br><br>
+				<ul>
+					<div th:if="!${film.categorieVinte.empty}"> 
+						<li>
+							<strong>Ecco tutte le categorie che ha vinto:</strong>
+								<div th:each="categoria : ${film.categorieVinte}">
+									<a th:href="@{'/categoriaF' + '/' + ${categoria.id}}" 
+		        						th:text="|${categoria.nome} ${categoria.edizione.anno}|">Nome anno</a><br>
+		        				</div>
+		        		</li>
 					</div>
-				</div>
-			</li>			
-				<ul><li>
-					<a th:href="@{'/addCommento' + '/' + ${film.id}}">Aggiungi commento</a>
-				</li></ul>
-	
-			</ul>
+				<li>
+					<strong style="font-size:18px">Attori che hanno recitato nel film:</strong>
+					 <ul><div th:each="attore : ${film.attori}">
+					   <li><a href="artista.html" 
+						   th:href="@{'/artista' + '/' + ${attore.id}}" 
+						   th:text="|${attore.nome} ${attore.cognome}|">Nome Cognome</a></li>
+				     </div> </ul>
+				</li>
+					<div th:if="${admin}"> 
+						<ul><li>
+							<a th:href="@{'/addAttoreToFilm' + '/' + ${film.id}}">Aggiungi un attore a questo film</a>
+						</li></ul><br>
+					</div>
+				<li> 
+					<strong style="font-size:18px">Operatori che hanno lavorato a questo film:</strong>
+					 <ul><div th:each="operatore : ${film.operatoriTecnici}">
+					   <li><a href="operatore.html" 
+						   th:href="@{'/artista' + '/' + ${operatore.id}}" 
+						   th:text="|${operatore.nome} ${operatore.cognome}|">Nome Cognome</a></li>
+				     </div></ul>
+				</li>
+					<div th:if="${admin}"> 
+						<ul><li>
+							<a th:href="@{'/addOperatoreToFilm' + '/' + ${film.id}}">Aggiungi un operatore tecnico a questo film</a>
+						</li></ul><br>
+					</div>
+					<div th:if="!${film.commenti.empty}"> 
+				<li> 
+						<strong style="font-size:18px">Commenti degli Utenti:</strong><br><br>
+						<div th:each="commento : ${film.commenti}">
+							<strong style="font-size:20px" th:text="${commento.utente.nome}">Nome utente</strong><br>
+					   		<span style="font-size:20px" th:text="${commento.testo}">Testo</span> 
+								<div th:if="${admin}"> 
+									<ul><li>
+										<a th:href="@{'/deleteCommento' + '/' + ${commento.id}}">Rimuovi commento</a>
+									</li></ul>
+								</div><br><br>
+						</div>
+					</div>
+				</li>			
+					<ul><li>
+						<a th:href="@{'/addCommento' + '/' + ${film.id}}">Aggiungi commento</a>
+					</li></ul>
+		
+				</ul>
+			</div>
+		</div>
+		<div id="img-container">
+			<img class="img-item" th:src="${film.imageUrl}"/>
 		</div>
 	</div>
 

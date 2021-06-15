@@ -8,40 +8,40 @@
 	    	<div id="flex-testo">
 	    		<h4 th:text="#{header.menuAdmin}">Menu</h4>
 	    		<div th:replace="fragments/base.html :: DettagliPersona"></div>
+		    	<ul>
+					<li><div>
+						<a th:href="@{/addArtista}">Aggiungi artista</a>
+		   			</div></li>
+		   			<li><div>
+						<a th:href="@{/addFilm}">Aggiungi film</a>
+		   			</div></li>
+		   			<li><div>
+						<a th:href="@{/addEdizione}">Aggiungi edizione</a>
+		   			</div></li>
+		   			<li><div>
+						<a th:href="@{/addCategoriaFilm}">Aggiungi categoria film</a>
+		   			</div></li>
+		   			<li><div>
+						<a th:href="@{/addCategoriaArtista}">Aggiungi categoria artista</a>
+		   			</div></li>
+		   			<li><div>
+						<a th:href="@{/deleteArtista}">Rimuovi un artista</a>
+		   			</div></li>
+		   			<li><div>
+						<a th:href="@{/deleteFilm}">Rimuovi un film</a>
+		   			</div></li>
+		   			<li><div>
+						<a th:href="@{/deleteEdizione}">Rimuovi un'edizione</a>
+		   			</div></li>
+		   			<li><div>
+						<a th:href="@{/deleteCategoriaFilm}">Rimuovi una categoria film</a>
+		   			</div></li>
+		   			<li><div>
+						<a th:href="@{/deleteCategoriaArtista}">Rimuovi una categoria artista</a>
+		   			</div></li>
+		    	</ul>
 	    	</div>
-	    	<ul>
-				<li><div>
-					<a th:href="@{/addArtista}">Aggiungi artista</a>
-	   			</div></li>
-	   			<li><div>
-					<a th:href="@{/addFilm}">Aggiungi film</a>
-	   			</div></li>
-	   			<li><div>
-					<a th:href="@{/addEdizione}">Aggiungi edizione</a>
-	   			</div></li>
-	   			<li><div>
-					<a th:href="@{/addCategoriaFilm}">Aggiungi categoria film</a>
-	   			</div></li>
-	   			<li><div>
-					<a th:href="@{/addCategoriaArtista}">Aggiungi categoria artista</a>
-	   			</div></li>
-	   			<li><div>
-					<a th:href="@{/deleteArtista}">Rimuovi un artista</a>
-	   			</div></li>
-	   			<li><div>
-					<a th:href="@{/deleteFilm}">Rimuovi un film</a>
-	   			</div></li>
-	   			<li><div>
-					<a th:href="@{/deleteEdizione}">Rimuovi un'edizione</a>
-	   			</div></li>
-	   			<li><div>
-					<a th:href="@{/deleteCategoriaFilm}">Rimuovi una categoria film</a>
-	   			</div></li>
-	   			<li><div>
-					<a th:href="@{/deleteCategoriaArtista}">Rimuovi una categoria artista</a>
-	   			</div></li>
-	    	</ul>
-	    	</div>
+	    </div>
 			<div th:replace="fragments/base.html :: logoutPersonale"></div> 
     </div>
     <footer th:replace="fragments/base.html :: fondo(home='/default')"></footer>

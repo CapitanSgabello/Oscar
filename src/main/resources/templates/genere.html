@@ -6,23 +6,16 @@
 <body>
 	<header th:replace="fragments/base.html :: intestazione"></header>
 		<div class="center">
-			<div th:if=${genereFilm}>
-				<h2 th:text="'Ricerca un film ' + ${genereFilm}"></h2>
-			</div>
-			<div th:unless=${genereFilm}>
-    			<h2>Ricerca un film</h2>
-			</div>
+    		<h2>Ricerca un film</h2>
     		<input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Cerca un film" title="Type in a category">
 		</div>
 		<div id="sfondo-testi">
-			<div id="flex-testo">
-		    	<ul id="myMenu"> 
-		    		<div th:each="film : ${films}">
-			  			<li><a style="font-size:25px" th:href="@{'/film' + '/' + ${film.id}}" 
-			  				   th:text="${film.titolo} ">Titolo</a>
-		    		</div>
-		    	</ul>
-			</div>
+    	<ul id="myMenu"> 
+    		<div th:each="film : ${films}">
+	  			<li><a style="font-size:25px" th:href="@{'/film' + '/' + ${film.id}}" 
+	  				   th:text="${film.titolo} ">Titolo</a>
+    		</div>
+    	</ul>
 		</div>
 
 	<script>

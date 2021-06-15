@@ -12,10 +12,13 @@
 			<div th:if="!${utente.commenti.empty}">
 				<strong>I tuoi Commenti:</strong>
 						<div th:each="commento : ${utente.commenti}">
-					   		<br><a th:text="${commento.testo} ">Testo</a> 
+							<ul><li>
+							<strong th:text="${commento.film.titolo}">Titolo Film Recensito</strong>
+					   		<br><span th:text="${commento.testo} ">Testo</span> 
 								<ul><li>
 									<a th:href="@{'/deleteCommento' + '/' + ${commento.id}}">Rimuovi commento</a>
 								</li></ul>
+							</li></ul>
 						</div>
 			</div>
 	    </div>

@@ -11,13 +11,20 @@ a {
 	font-size: 20px;
 }
 
+#flex-container {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+}
+
 #sfondo-testi {
+	display: inline-flex;
     font-size: 20px;
     font-family: 'Tahoma';
     background-color: LemonChiffon;
-    width: 35%;
+    max-width: 35%;
     text-align: left;
-    margin: 9px 9px;
+    margin: 1% 9px;
     margin-left: 20px;
     height: 100%;
     box-sizing: border-box;
@@ -27,7 +34,17 @@ a {
 
 #flex-testo{
     margin-left: 10px;
-    
+    margin-right: 10px;
+}
+
+#img-container{
+	display: inline-flex;
+	margin-top: 1%;
+}
+
+.img-item{
+	width: 60%;
+	height: 80%;
 }
 
 input[type=text2] {
@@ -165,66 +182,6 @@ header > h1 {
     margin: 2%;
 
 }
-
-#flex-container {
-	display: flex;
-	align-items: flex-start;
-	height: 50px;
-	margin-left: 10px;
-	margin-right: 10px;
-}
-
-.flex-item { 
-	transform: skew(-20deg); 
-	flex-grow: 1;
-	height: 100%;
-	text-align: center;
-	line-height: 45px;
-	font-size: 150%;
-	font-family: Arial, Helvetica, sans-serif;
-}
-
-#img-container{
-	display: flex;
-	height: 600px;
-	margin-left: 10px;
-	margin-right: 10px;
-	margin-top: 30px;
-}
-
-.img-item{
-	align-items: center;
-	flex-grow: 1;
-}
-
-#img1{
-	background: no-repeat left/cover url(/images/amore-e-psiche.jpg);
-}
-
-#img2{
-	background: no-repeat left/cover url(/images/Gioconda.jpg);
-}
-
-#img3{
-	background: no-repeat left/cover url(/images/Ninfee.webp);
-}
-
-#img4{
-	background: no-repeat left/cover url(/images/vangogh-girasoli.jpg);
-}
-
-#color1 {
-	background-color: LimeGreen;
-}
-
-#color2 {
-	background-color: Coral;
-}
-
-#color3 {
-	background-color: MediumPurple;
-}
-
 
 footer {
     border-top-style: outset;

@@ -1,5 +1,7 @@
 package it.uniroma3.siw.oscar.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,10 +36,12 @@ public class ArtistaController {
 	}
 
 	@RequestMapping(value = "/artisti", method = RequestMethod.POST)
-	public String getArtistiByCognome(@RequestParam("cognome") String cognome, Model model) {
-		cognome = cognome.toLowerCase();
-		cognome = cognome.substring(0, 1).toUpperCase() + cognome.substring(1);
-		model.addAttribute("artisti", this.artistaService.cercaPerCognome(cognome));
+	public String getArtistiByCognome(@RequestParam("cognome") String input, Model model) {
+		input= input.toLowerCase();
+		input = input.substring(0, 1).toUpperCase() + input.substring(1);
+		List<Artista> artisti = this.artistaService.cercaPerCognome(input);
+		artisti.addAll(this.artistaService.cercaPerNome(input));
+		model.addAttribute("artisti", artisti);
 		return "artisti.html";
 	}
 	

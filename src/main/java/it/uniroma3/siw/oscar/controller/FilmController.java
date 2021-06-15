@@ -38,7 +38,15 @@ public class FilmController {
 		model.addAttribute("films", this.filmService.tutti());
 		return "films.html";
 	}
+	
+	@RequestMapping(value = "/film/genere/{genere}", method = RequestMethod.GET)
+	public String getFilmsByGenere(@PathVariable("genere") String genere, Model model) {
+		model.addAttribute("films", this.filmService.cercaPerGenere(genere));
+		model.addAttribute("genereFilm", genere);
+		return "films.html";
+	}
 
+	/*
 	@RequestMapping(value = "/film", method = RequestMethod.POST)
 	public String getFilmsByTitolo(@RequestParam("titolo") String titolo, Model model) {
 		titolo = titolo.toLowerCase();
@@ -46,6 +54,7 @@ public class FilmController {
 		model.addAttribute("films", this.filmService.cercaPerTitolo(titolo));
 		return "films.html";
 	}
+	*/
 
 	@RequestMapping(value = "/film/{id}", method = RequestMethod.GET)
 	public String getFilm(@PathVariable("id") Long id, Model model, HttpServletRequest request) {
