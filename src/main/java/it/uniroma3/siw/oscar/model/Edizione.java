@@ -3,6 +3,7 @@ package it.uniroma3.siw.oscar.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,10 +28,10 @@ public class Edizione implements Comparable<Edizione>{
 	@Column(nullable = false, unique=true)
 	private Long anno;
 	
-	@OneToMany(mappedBy="edizione")
+	@OneToMany(mappedBy="edizione", cascade = {CascadeType.REMOVE})
 	private List<CategoriaFilm> categorieFilm;
 	
-	@OneToMany(mappedBy="edizione")
+	@OneToMany(mappedBy="edizione", cascade = {CascadeType.REMOVE})
 	private List<CategoriaArtista> categorieArtisti;
 	
 	@ManyToOne
@@ -38,8 +39,8 @@ public class Edizione implements Comparable<Edizione>{
 	
 	public Edizione() {
 		this.luogo = LUOGO;
-		this.categorieArtisti=new ArrayList<>();
-		this.categorieFilm=new ArrayList<>();
+		this.categorieArtisti = new ArrayList<>();
+		this.categorieFilm = new ArrayList<>();
 	}
 
 	public Long getId() {

@@ -5,7 +5,7 @@
 	</head>
 <body class="center">
 	<header th:replace="fragments/base.html :: intestazione"></header>	
-	<div id="sfondo-testi">
+	<div id="sfondo-testi" style="width: 35%;">
 		<div id="flex-testo">
 	    	<h2 th:text="'Edizione ' + ${edizione.anno}"></h2>
 			<strong style="font-size:18px">Presentatore: </strong><a th:href="@{'/artista' + '/' + ${edizione.presentatore.id}}"
