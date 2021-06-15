@@ -106,7 +106,7 @@ public class FilmController {
 	}
 
 	@RequestMapping(value = "/deleteFilm", method = RequestMethod.POST)
-	public String delete(@RequestParam("filmId") Long filmId, 
+	public String delete(@RequestParam("id") Long filmId, 
 			Model model) {
 		Film film = this.filmService.filmPerId(filmId);
 		this.filmService.delete(film);

@@ -116,7 +116,7 @@ public class CategoriaArtistaController {
 	}
 
 	@RequestMapping(value = "/deleteCategoriaArtista", method = RequestMethod.POST)
-	public String delete(@RequestParam("categoriaArtistaId") Long categoriaArtistaId, Model model) {
+	public String delete(@RequestParam("id") Long categoriaArtistaId, Model model) {
 		CategoriaArtista categoriaArtista = this.categoriaArtistaService.categoriaArtistaPerId(categoriaArtistaId);
 		this.categoriaArtistaService.delete(categoriaArtista);
 		return "admin/home";

@@ -3,35 +3,11 @@
 <head th:replace="fragments/base.html :: headerfiles(title=#{title.formAttore})"> </head>
 <body>
 	<header th:replace="fragments/base.html :: intestazione"></header>
-	
-	<div>
-    	<h2>Seleziona l'attore:</h2>
-    	<input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search.." title="Type in a category">
-    	<ul id="myMenu"> 
-    		<div th:each="artista : ${artisti}">
-	  			<li><a th:href="@{'/newAttoreInFilm' + '/' + ${filmId} + '/' + ${artista.id}}" 
-	  				   th:text="|${artista.nome} ${artista.cognome}|">Nome Cognome</a></li>
-    		</div>
-    	</ul>
-	</div>
 
-<script>
-function myFunction() {
-  var input, filter, ul, li, a, i;
-  input = document.getElementById("mySearch");
-  filter = input.value.toUpperCase();
-  ul = document.getElementById("myMenu");
-  li = ul.getElementsByTagName("li");
-  for (i = 0; i < li.length; i++) {
-    a = li[i].getElementsByTagName("a")[0];
-    if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-      li[i].style.display = "";
-    } else {
-      li[i].style.display = "none";
-    }
-  }
-}
-</script>
+	<div th:replace="fragments/base.html :: ricercaArtistaForm('Selezione artista', ${artisti},
+						'newAttoreInFilm/', ${filmId})"></div>
+
+	<script th:replace="fragments/base.html :: scriptRicerca"></script>
 
 </body>
 </html>

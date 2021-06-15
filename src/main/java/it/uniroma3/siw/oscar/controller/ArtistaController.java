@@ -78,7 +78,7 @@ public class ArtistaController {
 	}
 	
 	@RequestMapping(value = "/deleteArtista", method = RequestMethod.POST)
-	public String delete(@RequestParam("artistaId") Long artistaId, 
+	public String delete(@RequestParam("id") Long artistaId, 
 			Model model) {
 		Artista artista = this.artistaService.artistaPerId(artistaId);
 		this.artistaService.delete(artista);

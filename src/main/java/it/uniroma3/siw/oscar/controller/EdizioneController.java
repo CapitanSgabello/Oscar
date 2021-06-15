@@ -82,7 +82,7 @@ public class EdizioneController {
 	}
 
 	@RequestMapping(value = "/deleteEdizione", method = RequestMethod.POST)
-	public String delete(@RequestParam("edizioneId") Long edizioneId, Model model) {
+	public String delete(@RequestParam("id") Long edizioneId, Model model) {
 		Edizione edizione = this.edizioneService.edizionePerId(edizioneId);
 		this.edizioneService.delete(edizione);
 		return "admin/home";

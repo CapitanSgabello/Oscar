@@ -123,7 +123,7 @@ public class CategoriaFilmController {
 	}
 
 	@RequestMapping(value = "/deleteCategoriaFilm", method = RequestMethod.POST)
-	public String delete(@RequestParam("categoriaFilmId") Long categoriaFilmId, Model model) {
+	public String delete(@RequestParam("id") Long categoriaFilmId, Model model) {
 		CategoriaFilm categoriaFilm = this.categoriaFilmService.categoriaFilmPerId(categoriaFilmId);
 		this.categoriaFilmService.delete(categoriaFilm);
 		return "admin/home";

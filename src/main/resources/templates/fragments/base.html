@@ -10,6 +10,82 @@
 	<header th:fragment="intestazione">
 	</header>
 	
+	<div th:fragment="ricercaArtistaForm(header, lista, path, path2)">
+		<div>
+	    	<h2 th:text=${header}></h2>
+	    	<input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search.." title="Type in a category">
+		</div>
+		<div id="sfondo-testi">
+			<div id="flex-testo">
+				<h2 class="center">Artisti:</h2>
+		    	<ul id="myMenu"> 
+		    		<div th:each="artista : ${lista}">
+			  			<li><a th:href="@{'/' + ${path} + ${path2} + '/' + ${artista.id}}" 
+			  					th:text="|${artista.nome} ${artista.cognome}|">Nome Cognome</a></li>
+		    		</div>
+		    	</ul>
+			</div>
+		</div>
+	</div>
+	
+	<div th:fragment="ricercaFilmForm(header, lista, path, path2)">
+		<div>
+	    	<h2 th:text=${header}></h2>
+	    	<input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search.." title="Type in a category">
+		</div>
+		<div id="sfondo-testi">
+			<div id="flex-testo">
+				<h2 class="center">Films:</h2>
+		    	<ul id="myMenu"> 
+		    		<div th:each="film : ${lista}">
+			  			<li><a th:href="@{'/' + ${path} + '/' + ${path2} + '/' + ${film.id}}" 
+			  					th:text="${film.titolo}">Titolo</a></li>
+		    		</div>
+		    	</ul>
+			</div>
+		</div>
+	</div>
+	
+	<script th:fragment="scriptRicerca">
+	function myFunction() {
+	  var input, filter, ul, li, a, i;
+	  input = document.getElementById("mySearch");
+	  filter = input.value.toUpperCase();
+	  ul = document.getElementById("myMenu");
+	  li = ul.getElementsByTagName("li");
+	  for (i = 0; i < li.length; i++) {
+	    a = li[i].getElementsByTagName("a")[0];
+	    if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+	      li[i].style.display = "";
+	    } else {
+	      li[i].style.display = "none";
+	    }
+	  }
+	}
+	</script>
+	
+	<div th:fragment="delete(header, pathAction, object, param1, param2)">
+		<div>
+			<h4 th:text="'Seleziona quale ' + ${header} + ' rimuovere:'">Seleziona 'cosa' rimuovere:</h4>
+		</div>
+		<form th:action="@{__${pathAction}__}" method="POST" th:object="${object}">	
+				<div>
+					<select name='id'>
+	    				<option th:each="oggetto : ${object}" th:value="${oggetto.id}" th:text="${oggetto.__${param1}__}">
+	    					<div th:if=${oggetto.__${param2}__}>
+	    						<span th:text="${oggetto.__${param2}__}"></span>
+	    					</div>
+	    				</option>
+					</select>
+				</div><br>
+				<div>
+				<button class="button" 
+							style="width: 10%; line-height: 100%; font-size: small" 
+							type="submit"><span>Invio</span></button>
+				</div>
+		</form>
+	</div>
+	
 	<div th:fragment="DettagliPersona">
     	<h4 style="font-size:17px">Dettagli Profilo:</h4>
     	<div th:if="${utente}" th:object="${utente}">
