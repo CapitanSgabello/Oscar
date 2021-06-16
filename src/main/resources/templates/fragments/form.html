@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="headerfiles(title)">
+	<meta charset="UTF-8" />
+	<link th:href="@{/css/myCss.css}" rel="stylesheet">
+	<title th:text="${title}"></title>
+</head>
+<body>
+	
+	<header th:fragment="intestazione">
+	</header>
+	
+	<div th:fragment="ricercaForm(header, lista, path, path2, param1, param2)">
+		<div>
+	    	<h2 th:text="'Seleziona ' + ${header}"></h2>
+	    	<input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search.." title="Type in a category">
+		</div>
+		<div id="sfondo-testi">
+			<div id="flex-testo">
+				<h2 th:text="${header} + ' :'" class="center"></h2>
+		    	<ul id="myMenu"> 
+		    		<div th:if="${param2} != ''">
+			    		<div th:each="oggetto : ${lista}">
+				  			<li><a th:href="@{'/' + ${path} + ${path2} + '/' + ${oggetto.id}}" 
+				  					th:text="|${oggetto.__${param1}__} ${oggetto.__${param2}__}|"></a>
+		    				</li>
+			    		</div>
+		    		</div>
+		    		<div th:unless="${param2} != ''">
+			    		<div th:each="oggetto : ${lista}">
+				  			<li><a th:href="@{'/' + ${path} + ${path2} + '/' + ${oggetto.id}}" 
+				  					th:text="${oggetto.__${param1}__}"></a>
+		    				</li>
+			    		</div>
+		    		</div>
+		    	</ul>
+			</div>
+		</div>
+	</div>
+	
+	<div th:fragment="vincitoreForm(pathAction, categoria, lista, param1, param2)">
+		<div>
+			<h2>Seleziona il vincitore:</h2>
+		</div>
+		<form th:action="@{__${pathAction}__}" method="POST" th:object="${categoria}">		
+			<div>	
+				<div>
+					<select name='id'>
+	    				<option th:each="candidato : ${lista}" th:value="${candidato.id}" th:text="|${candidato.__${param1}__} ${candidato.__${param2}__}|">
+	    				</option>
+					</select>
+				</div><br>
+				<input type="hidden" th:value="${categoria.id}" th:field="*{id}" />
+				<input type="hidden" th:value="${categoria.nome}" th:field="*{nome}" />
+				<input type="hidden" th:value="${categoria.edizione}" th:field="*{edizione}" />
+				<input type="hidden" th:value="${categoria.candidati}" th:field="*{candidati}" />
+				<div>
+					<button class="button" 
+							style="width: 10%; line-height: 100%; font-size: small" 
+							type="submit"><span>Invio</span></button>
+				</div>
+			</div>
+		</form>
+	</div>
+	
+	<script th:fragment="scriptRicerca">
+	function myFunction() {
+	  var input, filter, ul, li, a, i;
+	  input = document.getElementById("mySearch");
+	  filter = input.value.toUpperCase();
+	  ul = document.getElementById("myMenu");
+	  li = ul.getElementsByTagName("li");
+	  for (i = 0; i < li.length; i++) {
+	    a = li[i].getElementsByTagName("a")[0];
+	    if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+	      li[i].style.display = "";
+	    } else {
+	      li[i].style.display = "none";
+	    }
+	  }
+	}
+	</script>
+	
+	<div th:fragment="delete(header, pathAction, object, param1, param2)">
+		<div>
+			<h4 th:text="'Seleziona quale ' + ${header} + ' rimuovere:'">Seleziona 'cosa' rimuovere:</h4>
+		</div>
+		<form th:action="@{__${pathAction}__}" method="POST" th:object="${object}">	
+				<div>
+					<select name='id'>
+						<div th:if="${param2} != ''">
+	    					<option th:each="oggetto : ${object}" th:value="${oggetto.id}" th:text="|${oggetto.__${param1}__} ${oggetto.__${param2}__}|">
+	    					</option>
+						</div>
+						<div th:unless="${param2} != ''">
+							<option th:each="oggetto : ${object}" th:value="${oggetto.id}" th:text="${oggetto.__${param1}__}">
+	    					</option>
+						</div>
+					</select>
+				</div><br>
+				<div>
+				<button class="button" 
+							style="width: 10%; line-height: 100%; font-size: small" 
+							type="submit"><span>Invio</span></button>
+				</div>
+		</form>
+	</div>
+	
+</body>
+</html>

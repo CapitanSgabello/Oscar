@@ -4,7 +4,7 @@
 <body class="center">
 	<header th:replace="fragments/base.html :: intestazione"></header>
 	
-	<div th:replace="fragments/base.html :: delete('film', '/deleteFilm', ${films}, 'titolo', 'dataUscita')"></div>
+	<div th:replace="fragments/form.html :: delete('film', '/deleteFilm', ${films}, 'titolo', 'dataUscita')"></div>
 	
 	 <footer th:replace="fragments/base.html :: fondo"></footer>
 </body>

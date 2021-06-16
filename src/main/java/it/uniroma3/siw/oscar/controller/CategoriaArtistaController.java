@@ -18,7 +18,6 @@ import it.uniroma3.siw.oscar.controller.validator.CategoriaArtistaValidator;
 import it.uniroma3.siw.oscar.model.Artista;
 import it.uniroma3.siw.oscar.model.CategoriaArtista;
 import it.uniroma3.siw.oscar.model.Credenziali;
-import it.uniroma3.siw.oscar.model.Edizione;
 import it.uniroma3.siw.oscar.service.CategoriaArtistaService;
 
 @Controller
@@ -40,7 +39,7 @@ public class CategoriaArtistaController {
 
 	@RequestMapping(value = "/categoriaA/{id}", method = RequestMethod.GET)
 	public String getCategoriaArtista(@PathVariable("id") Long id, Model model, HttpServletRequest request) {
-		model.addAttribute("categoriaArtista", this.categoriaArtistaService.categoriaArtistaPerId(id));
+		model.addAttribute("categoria", this.categoriaArtistaService.categoriaArtistaPerId(id));
 		if(request.getUserPrincipal() != null) {
 			Credenziali credenziali = categoriaArtistaService.getCredenziali(request.getUserPrincipal().getName());
 
@@ -76,15 +75,16 @@ public class CategoriaArtistaController {
 	public String addVincitoreToCategoriaA(@PathVariable("id") Long id, Model model) {
 		logger.debug("addVincitoreToCategoriaA");
 		CategoriaArtista categoria = categoriaArtistaService.categoriaArtistaPerId(id);
-		model.addAttribute("categoriaArtista", categoria);
+		model.addAttribute("categoria", categoria);
 		model.addAttribute("candidati", categoria.getCandidati());
 		return "vincitoreArtistaForm.html";
 	}
 	
 	@RequestMapping(value = "/newVincitoreToCategoriaA", method = RequestMethod.POST)
-	public String newVincitoreToCategoriaA(@ModelAttribute("categoriaArtista") CategoriaArtista categoria, Model model) {
+	public String newVincitoreToCategoriaA(@RequestParam("id") Long artistaId, @ModelAttribute("categoria") CategoriaArtista categoria, Model model) {
+		categoria.setVincitore(categoriaArtistaService.artistaPerId(artistaId));
 		this.categoriaArtistaService.save(categoria);
-		model.addAttribute("categoriaArtista", categoria);
+		model.addAttribute("categoria", categoria);
 		model.addAttribute("admin", true);
 		return "categoriaArtista.html";
 	}
@@ -103,7 +103,7 @@ public class CategoriaArtistaController {
 		CategoriaArtista categoria = this.categoriaArtistaService.categoriaArtistaPerId(categoriaId);
 		categoria.getCandidati().add(candidato);
 		this.categoriaArtistaService.save(categoria);
-		model.addAttribute("categoriaArtista", categoria);
+		model.addAttribute("categoria", categoria);
 		model.addAttribute("admin", true);
 		return "categoriaArtista.html";
 	}

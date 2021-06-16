@@ -4,10 +4,10 @@
 <body>
 	<header th:replace="fragments/base.html :: intestazione"></header>
 
-	<div th:replace="fragments/base.html :: ricercaArtistaForm('Selezione artista', ${artisti},
-						'newCandidatoInCategoriaA/', ${categoriaArtistaId})"></div>
+	<div th:replace="fragments/form.html :: ricercaForm('Selezione artista', ${artisti},
+						'newCandidatoInCategoriaA/', ${categoriaArtistaId}, 'nome', 'cognome')"></div>
 
-	<script th:replace="fragments/base.html :: scriptRicerca"></script>
+	<script th:replace="fragments/form.html :: scriptRicerca"></script>
 
 </body>
 </html>

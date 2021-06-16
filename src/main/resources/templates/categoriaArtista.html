@@ -8,32 +8,32 @@
 	<div id="sfondo-testi">
 		<div id="flex-testo">
 			<div>
-		    	<h1 th:text="|${categoriaArtista.nome} ${categoriaArtista.edizione.anno}| + ':'"></h1>
+		    	<h1 th:text="|${categoria.nome} ${categoria.edizione.anno}| + ':'"></h1>
 			</div>
-			<div th:if=${categoriaArtista.vincitore}>
+			<div th:if=${categoria.vincitore}>
 				<h4>Vincitore categoria:</h4>
 				<ul><li>
-					<a href="artista.html" th:href="@{'/artista' + '/' +${categoriaArtista.vincitore.id}}" 
-									   th:text="|${categoriaArtista.vincitore.nome} ${categoriaArtista.vincitore.cognome}|">Nome Cognome</a>
+					<a href="artista.html" th:href="@{'/artista' + '/' +${categoria.vincitore.id}}" 
+									   th:text="|${categoria.vincitore.nome} ${categoria.vincitore.cognome}|">Nome Cognome</a>
 				</li></ul>
 			</div>
-			<div th:unless=${categoriaArtista.vincitore}>
+			<div th:unless=${categoria.vincitore}>
 				<div th:if="${admin}"> 
 					<ul><li>
-						<a th:href="@{'/addVincitoreToCategoriaA' + '/' + ${categoriaArtista.id}}">Aggiungi un vincitore a questa categoria</a>
+						<a th:href="@{'/addVincitoreToCategoriaA' + '/' + ${categoria.id}}">Aggiungi un vincitore a questa categoria</a>
 					</li></ul>
 				</div>
 			</div>
 					 
 		    <h4>Candidati categoria:</h4>
 		    <ul>
-		    	<li th:each="candidato : ${categoriaArtista.candidati}">
+		    	<li th:each="candidato : ${categoria.candidati}">
 		    		<a href="artista.html" th:href="@{'/artista' + '/' + ${candidato.id}}" 
 		    							   th:text="|${candidato.nome} ${candidato.cognome}|">Nome Cognome</a>
 				</li>
 				<div th:if="${admin}"> 
 					<ul><li>
-						<a th:href="@{'/addCandidatoToCategoriaA' + '/' + ${categoriaArtista.id}}">Aggiungi un candidato a questa categoria</a>
+						<a th:href="@{'/addCandidatoToCategoriaA' + '/' + ${categoria.id}}">Aggiungi un candidato a questa categoria</a>
 					</li></ul>
 				</div>
 		    </ul>

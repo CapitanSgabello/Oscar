@@ -4,7 +4,7 @@
 <body class="center">
 	<header th:replace="fragments/base.html :: intestazione"></header>
 	
-	<div th:replace="fragments/base.html :: delete('artista', '/deleteArtista', ${artisti}, 'nome', 'cognome')"></div>
+	<div th:replace="fragments/form.html :: delete('artista', '/deleteArtista', ${artisti}, 'nome', 'cognome')"></div>
 	
 	<footer th:replace="fragments/base.html :: fondo"></footer>
 </body>

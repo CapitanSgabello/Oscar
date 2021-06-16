@@ -14,10 +14,10 @@
 			   	<strong style="font-size:18px"> Nome: </strong> <span style="font-size:20px" th:text="${artista.nome}"> Nome </span><br>
 				<strong style="font-size:18px"> Cognome: </strong> <span style="font-size:20px" th:text="${artista.cognome}"> Cognome</span><br>
 				<strong style="font-size:18px"> Data di nascita: </strong> <span style="font-size:20px" th:text="${artista.dataNascita}"> Data Nascita</span><br>
-				<strong style="font-size:18px"> Nazionalita': </strong> <span style="font-size:20px" th:text="${artista.nazionalita}">  Nazionalita'</span><br><br>
+				<strong style="font-size:18px"> Nazionalita': </strong> <span style="font-size:20px" th:text="${artista.nazionalita}">  Nazionalita'</span><br>
 				<div th:if="${artista.dataMorte}">
-					<strong> Data morte: <span th:text="${artista.dataMorte}"> Data Morte</span></strong><br>
-				</div>
+					<strong> Data morte: </strong><span th:text="${artista.dataMorte}"> Data Morte</span><br>
+				</div><br>
 				<div th:unless="${artista.dataMorte}"></div>
 			<ul>
 				<div th:if="!${artista.categorieVinte.empty}"> 

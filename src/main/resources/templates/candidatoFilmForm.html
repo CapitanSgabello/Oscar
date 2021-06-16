@@ -2,12 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/base.html :: headerfiles(title=#{title.candidatoFilmForm})"> </head>
 <body>
+
 	<header th:replace="fragments/base.html :: intestazione"></header>
 
-	<div th:replace="fragments/base.html :: ricercaFilmForm('Selezione Film', ${films},
-						'newCandidatoInCategoriaF/', ${categoriaFilmId})"></div>
+	<div th:replace="fragments/form.html :: ricercaForm('Film', ${films},
+						'newCandidatoInCategoriaF/', ${categoriaFilmId}, 'titolo', '')"></div>
 
-	<script th:replace="fragments/base.html :: scriptRicerca"></script>
+	<script th:replace="fragments/form.html :: scriptRicerca"></script>
 
 </body>
 </html>

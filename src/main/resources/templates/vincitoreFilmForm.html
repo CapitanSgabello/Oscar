@@ -3,31 +3,9 @@
 <head th:replace="fragments/base.html :: headerfiles(title=#{title.vincitoreFilmForm})"> </head>
 <body class="center">
 	<header th:replace="fragments/base.html :: intestazione"></header>
-	<div>
-		<h2>Seleziona il vincitore:</h2>
-	</div>
-	<form th:action="@{/newVincitoreToCategoriaF}" method="POST" th:object="${categoriaFilm}">
-		<div th:if="${#fields.hasGlobalErrors()}">
-  			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
-		</div>		
-		<div>	
-			<div>
-				<select th:field="*{vincitore}">
-    				<option th:each="candidato : ${candidati}" th:value="${candidato.id}" th:text="${candidato.titolo}">
-    				</option>
-				</select>
-			</div><br>
-			<input type="hidden" th:value="${categoriaFilm.id}" th:field="*{id}" />
-			<input type="hidden" th:value="${categoriaFilm.nome}" th:field="*{nome}" />
-			<input type="hidden" th:value="${categoriaFilm.edizione}" th:field="*{edizione}" />
-			<input type="hidden" th:value="${categoriaFilm.candidati}" th:field="*{candidati}" />
-			<div>
-				<button class="button" 
-						style="width: 10%; line-height: 100%; font-size: small" 
-						type="submit"><span>Invio</span></button>
-			</div>
-		</div>
-	</form>
-	 <footer th:replace="fragments/base.html :: fondo"></footer>
+		
+	<div th:replace="fragments/form.html :: vincitoreForm('/newVincitoreToCategoriaF', ${categoria}, ${candidati}, 'titolo', 'dataUscita')"></div>
+	
+	<footer th:replace="fragments/base.html :: fondo"></footer>
 </body>
 </html>

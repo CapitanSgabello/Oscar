@@ -8,30 +8,30 @@
 	<div id="sfondo-testi">
 		<div id="flex-testo">
 			<div>
-		    	<h1 th:text="|${categoriaFilm.nome} ${categoriaFilm.edizione.anno}| + ':'"></h1>
+		    	<h1 th:text="|${categoria.nome} ${categoria.edizione.anno}| + ':'"></h1>
 			</div>
-			<div th:if=${categoriaFilm.vincitore}>
+			<div th:if=${categoria.vincitore}>
 				<h4>Vincitore categoria:</h4>
 				<ul><li>
-					<a href="film.html" th:href="@{'/film' + '/' + ${categoriaFilm.vincitore.id}}" th:text="${categoriaFilm.vincitore.titolo}">Titolo</a>
+					<a href="film.html" th:href="@{'/film' + '/' + ${categoria.vincitore.id}}" th:text="${categoria.vincitore.titolo}">Titolo</a>
 				</li></ul>
 			</div>
-			<div th:unless=${categoriaFilm.vincitore}>
+			<div th:unless=${categoria.vincitore}>
 				<div th:if="${admin}"> 
 					<ul><li>
-						<a th:href="@{'/addVincitoreToCategoriaF' + '/' + ${categoriaFilm.id}}">Aggiungi un vincitore a questa categoria</a>
+						<a th:href="@{'/addVincitoreToCategoriaF' + '/' + ${categoria.id}}">Aggiungi un vincitore a questa categoria</a>
 					</li></ul>
 				</div>
 			</div>
 			
 		    <h4>Candidati categoria:</h4>
 		    <ul>
-		    	<li th:each="candidato : ${categoriaFilm.candidati}">
+		    	<li th:each="candidato : ${categoria.candidati}">
 		    		<a href="film.html" th:href="@{'/film' + '/' + ${candidato.id}}" th:text="${candidato.titolo}">Titolo</a>
 				</li>
 				<div th:if="${admin}"> 
 					<ul><li>
-						<a th:href="@{'/addCandidatoToCategoriaF' + '/' + ${categoriaFilm.id}}">Aggiungi un candidato a questa categoria</a>
+						<a th:href="@{'/addCandidatoToCategoriaF' + '/' + ${categoria.id}}">Aggiungi un candidato a questa categoria</a>
 					</li></ul>
 				</div>
 		    </ul>

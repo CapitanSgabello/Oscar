@@ -47,7 +47,7 @@ public class CategoriaFilmController {
 
 	@RequestMapping(value = "/categoriaF/{id}", method = RequestMethod.GET)
 	public String getCategoriaFilm(@PathVariable("id") Long id, Model model, HttpServletRequest request) {
-		model.addAttribute("categoriaFilm", this.categoriaFilmService.categoriaFilmPerId(id));
+		model.addAttribute("categoria", this.categoriaFilmService.categoriaFilmPerId(id));
 		if(request.getUserPrincipal() != null) {
 			Credenziali credenziali = categoriaFilmService.getCredenziali(request.getUserPrincipal().getName());
 
@@ -83,15 +83,16 @@ public class CategoriaFilmController {
 	public String addVincitoreToCategoriaF(@PathVariable("id") Long id, Model model) {
 		logger.debug("addVincitoreToCategoriaF");
 		CategoriaFilm categoria = categoriaFilmService.categoriaFilmPerId(id);
-		model.addAttribute("categoriaFilm", categoria);
+		model.addAttribute("categoria", categoria);
 		model.addAttribute("candidati", categoria.getCandidati());
 		return "vincitoreFilmForm.html";
 	}
 	
 	@RequestMapping(value = "/newVincitoreToCategoriaF", method = RequestMethod.POST)
-	public String newVincitoreToCategoriaF(@ModelAttribute("categoriaFilm") CategoriaFilm categoria, Model model) {
+	public String newVincitoreToCategoriaF(@RequestParam("id") Long filmId, @ModelAttribute("categoria") CategoriaFilm categoria, Model model) {
+		categoria.setVincitore(this.categoriaFilmService.filmPerId(filmId));
 		this.categoriaFilmService.save(categoria);
-		model.addAttribute("categoriaFilm", categoria);
+		model.addAttribute("categoria", categoria);
 		model.addAttribute("admin", true);
 		return "categoriaFilm.html";
 	}
@@ -110,7 +111,7 @@ public class CategoriaFilmController {
 		CategoriaFilm categoria = this.categoriaFilmService.categoriaFilmPerId(categoriaId);
 		categoria.getCandidati().add(candidato);
 		this.categoriaFilmService.save(categoria);
-		model.addAttribute("categoriaFilm", categoria);
+		model.addAttribute("categoria", categoria);
 		model.addAttribute("admin", true);
 		return "categoriaFilm.html";
 	}
