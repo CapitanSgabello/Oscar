@@ -12,13 +12,13 @@ import it.uniroma3.siw.oscar.repository.CredenzialiRepository;
 
 @Service
 public class CredenzialiService {
-	
+
 	@org.springframework.beans.factory.annotation.Autowired(required=true)
-    protected PasswordEncoder passwordEncoder;
+	protected PasswordEncoder passwordEncoder;
 
 	@Autowired
 	protected CredenzialiRepository credenzialiRepository;
-	
+
 	@Transactional
 	public Credenziali getCredenziali(Long id) {
 		Optional<Credenziali> risultato = this.credenzialiRepository.findById(id);
@@ -30,11 +30,11 @@ public class CredenzialiService {
 		Optional<Credenziali> risultati = this.credenzialiRepository.findByUsername(username);
 		return risultati.orElse(null);
 	}
-		
-    @Transactional
-    public Credenziali saveCredenziali(Credenziali credenziali) {
-    	credenziali.setRuolo(Credenziali.DEFAULT_ROLE);
-    	credenziali.setPassword(this.passwordEncoder.encode(credenziali.getPassword()));
-        return this.credenzialiRepository.save(credenziali);
-    }
+
+	@Transactional
+	public Credenziali saveCredenziali(Credenziali credenziali) {
+		credenziali.setRuolo(Credenziali.DEFAULT_ROLE);
+		credenziali.setPassword(this.passwordEncoder.encode(credenziali.getPassword()));
+		return this.credenzialiRepository.save(credenziali);
+	}
 }

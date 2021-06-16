@@ -19,28 +19,27 @@ import it.uniroma3.siw.oscar.model.Credenziali;
 import it.uniroma3.siw.oscar.model.Film;
 import it.uniroma3.siw.oscar.model.Utente;
 import it.uniroma3.siw.oscar.service.CommentoService;
-import it.uniroma3.siw.oscar.service.CredenzialiService;
 
 
 @Controller
 public class CommentoController {
 	@Autowired
 	private CommentoValidator commentoValidator;
-	
+
 	@Autowired
 	private CommentoService commentoService;
-	
+
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
-	
+
 	@RequestMapping(value="/addCommento/{id}", method = RequestMethod.GET)
 	public String addCommento(@PathVariable("id") Long filmId, Model model ) {
 		logger.debug("addCommento");
 		model.addAttribute("commento", new Commento());
 		model.addAttribute("film", commentoService.cercaFilmPerId(filmId) );
-		
+
 		return "commentoForm.html";
 	}
-	
+
 	@RequestMapping(value = "/commento/{filmId}", method = RequestMethod.POST)
 	public String newCommento(@PathVariable("filmId") Long filmId, @ModelAttribute("commento") Commento commento, 
 			Model model, BindingResult bindingResult, HttpServletRequest request) {
@@ -61,8 +60,8 @@ public class CommentoController {
 		}
 		return "commentoForm.html";
 	}
-	
-	
+
+
 	@RequestMapping(value = "/deleteCommento/{id}", method = RequestMethod.GET)
 	public String delete(@PathVariable("id") Long commentoId, 
 			Model model, HttpServletRequest request) {
@@ -73,19 +72,16 @@ public class CommentoController {
 			model.addAttribute("film", commento.getFilm());
 			model.addAttribute("admin", 1);
 			this.commentoService.delete(commento);
-			
+
 			return "film.html";
 		} else {
 			this.commentoService.delete(commento);
 			model.addAttribute("utente", credenziali.getUtente());
-			
+
 			return "areaPersonale.html";
+
 		}
-		
-		
-		
+
 	}
-	
-	//eliminazione commento da utente
 
 }

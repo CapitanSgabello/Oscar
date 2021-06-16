@@ -13,10 +13,10 @@ import it.uniroma3.siw.oscar.service.CategoriaArtistaService;
 
 @Component
 public class CategoriaArtistaValidator implements Validator{
-	
+
 	@Autowired
 	private CategoriaArtistaService categoriaArtistaService;
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(CategoriaArtistaValidator.class);
 
 	@Override
@@ -28,7 +28,7 @@ public class CategoriaArtistaValidator implements Validator{
 	public void validate(Object target, Errors errors) {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nome", "required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "edizione", "required");
-		
+
 		if(!errors.hasErrors()) {
 			logger.debug("I valori inseriti sono validi.");
 			if(this.categoriaArtistaService.alreadyExists((CategoriaArtista)target)) {
@@ -36,7 +36,7 @@ public class CategoriaArtistaValidator implements Validator{
 				errors.reject("duplicato");
 			}
 		}
-		
+
 	}
 
 }

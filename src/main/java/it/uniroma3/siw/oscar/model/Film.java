@@ -20,42 +20,42 @@ public class Film {
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	private Long id;
-	
+
 	private String imageUrl;
-	
+
 	@Column(nullable = false)
 	private String titolo;
-	
+
 	@Column(nullable = false)
 	private String genere;
-	
+
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private LocalDate dataUscita;
-	
+
 	@OneToMany(mappedBy="vincitore")
 	private List<CategoriaFilm> categorieVinte;
-	
+
 	@OneToMany(mappedBy="candidati")
 	private List<CategoriaFilm> categorieCandidate;
-	
+
 	@ManyToMany
 	private List<Artista> attori;
-	
+
 	@ManyToMany
 	private List<Artista> operatoriTecnici;
-	
+
 	@ManyToOne
 	private Artista regista;
-	
+
 	@OneToMany(mappedBy="film")
 	private List<Commento> commenti;
-	
+
 	public Film() {
-		this.attori=new ArrayList<>();
-		this.categorieCandidate=new ArrayList<>();
-		this.categorieVinte=new ArrayList<>();
-		this.operatoriTecnici=new ArrayList<>();
-		this.commenti=new ArrayList<>();
+		this.attori = new ArrayList<>();
+		this.categorieCandidate = new ArrayList<>();
+		this.categorieVinte = new ArrayList<>();
+		this.operatoriTecnici = new ArrayList<>();
+		this.commenti = new ArrayList<>();
 	}
 
 	public Long getId() {
@@ -137,7 +137,7 @@ public class Film {
 	public void setRegista(Artista regista) {
 		this.regista = regista;
 	}
-	
+
 	public void setCommenti(List<Commento> commenti) {
 		this.commenti = commenti;
 	}
@@ -145,7 +145,7 @@ public class Film {
 	public List<Commento> getCommenti() {
 		return commenti;
 	}
-	
-	
-	
+
+
+
 }

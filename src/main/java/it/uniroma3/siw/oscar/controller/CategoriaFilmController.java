@@ -23,7 +23,7 @@ import it.uniroma3.siw.oscar.service.CategoriaFilmService;
 
 @Controller
 public class CategoriaFilmController {
-	
+
 	@Autowired
 	private CategoriaFilmService categoriaFilmService;
 
@@ -57,7 +57,7 @@ public class CategoriaFilmController {
 		}
 		return "categoriaFilm.html";
 	}
-	
+
 	@RequestMapping(value="/addCategoriaFilm", method = RequestMethod.GET)
 	public String addCategoriaFilm(Model model) {
 		logger.debug("addCategoriaFilm");
@@ -65,7 +65,7 @@ public class CategoriaFilmController {
 		model.addAttribute("edizioni", this.categoriaFilmService.tutteLeEdizioni());
 		return "CategoriaFilmForm.html";
 	}
-	
+
 	@RequestMapping(value = "/categoriaFilm", method = RequestMethod.POST)
 	public String newCategoriaFilm(@ModelAttribute("categoriaFilm") CategoriaFilm categoria, 
 			Model model, BindingResult bindingResult) {
@@ -78,7 +78,7 @@ public class CategoriaFilmController {
 		model.addAttribute("edizioni", this.categoriaFilmService.tutteLeEdizioni());
 		return "CategoriaFilmForm.html";
 	}
-	
+
 	@RequestMapping(value="/addVincitoreToCategoriaF/{id}", method = RequestMethod.GET)
 	public String addVincitoreToCategoriaF(@PathVariable("id") Long id, Model model) {
 		logger.debug("addVincitoreToCategoriaF");
@@ -87,7 +87,7 @@ public class CategoriaFilmController {
 		model.addAttribute("candidati", categoria.getCandidati());
 		return "vincitoreFilmForm.html";
 	}
-	
+
 	@RequestMapping(value = "/newVincitoreToCategoriaF", method = RequestMethod.POST)
 	public String newVincitoreToCategoriaF(@ModelAttribute("categoria") CategoriaFilm categoria, Model model) {
 		this.categoriaFilmService.save(categoria);
@@ -95,7 +95,7 @@ public class CategoriaFilmController {
 		model.addAttribute("admin", true);
 		return "categoriaFilm.html";
 	}
-	
+
 	@RequestMapping(value="/addCandidatoToCategoriaF/{id}", method = RequestMethod.GET)
 	public String addCandidatoToCategoriaF(@PathVariable("id") Long id, Model model) {
 		logger.debug("addCandidatoToCategoriaF");
@@ -103,7 +103,7 @@ public class CategoriaFilmController {
 		model.addAttribute("films", this.categoriaFilmService.tuttiIFilm());
 		return "candidatoFilmForm.html";
 	}
-	
+
 	@RequestMapping(value = "/newCandidatoInCategoriaF/{categoriaFilmId}/{candidatoId}", method = RequestMethod.GET)
 	public String newCandidatoInCategoriaF(@PathVariable("categoriaFilmId") Long categoriaId, @PathVariable("candidatoId") Long candidatoId, Model model) {
 		Film candidato = this.categoriaFilmService.filmPerId(candidatoId);

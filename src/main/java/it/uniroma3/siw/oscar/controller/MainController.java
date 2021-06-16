@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import it.uniroma3.siw.oscar.model.Utente;
 import it.uniroma3.siw.oscar.service.CredenzialiService;
 
 @Controller

@@ -14,36 +14,36 @@ import it.uniroma3.siw.oscar.repository.FilmRepository;
 
 @Service
 public class FilmService {
-	
+
 	@Autowired
 	private FilmRepository filmRepo;
-	
+
 	@Autowired
 	private ArtistaService artistaService;
-	
+
 	@Autowired
 	private CredenzialiService credenzialiService;
-	
+
 	@Transactional
 	public Film save(Film film) {
 		return filmRepo.save(film);
 	}
-	
+
 	@Transactional
 	public void delete(Film film) {
-		 filmRepo.delete(film);
+		filmRepo.delete(film);
 	}
-	
+
 	@Transactional
 	public List<Film> cercaPerTitolo(String titolo) {
 		return filmRepo.findByTitolo(titolo);	
 	}
-	
+
 	@Transactional
 	public List<Film> cercaPerRegista(Artista artista) {
 		return filmRepo.findByRegista(artista);	
 	}
-	
+
 	@Transactional
 	public List<Film> cercaPerGenere(String genere) {
 		return filmRepo.findByGenere(genere);	
@@ -62,7 +62,7 @@ public class FilmService {
 		else 
 			return null;
 	}
-	
+
 	@Transactional
 	public boolean alreadyExists(Film film) {
 		List<Film> films = this.filmRepo.findByTitoloAndDataUscita(film.getTitolo(), film.getDataUscita());
@@ -71,21 +71,21 @@ public class FilmService {
 		else 
 			return false;
 	}
-	
+
 	@Transactional
 	public List<Artista> tuttiArtisti(){
 		return this.artistaService.tutti();
 	}
-	
+
 	@Transactional
 	public Artista artistaPerId(Long id) {
 		return this.artistaService.artistaPerId(id);
 	}
-	
+
 	@Transactional
 	public Credenziali getCredenziali(String username) {
 		return this.credenzialiService.getCredenziali(username);
 	}
-	
+
 
 }

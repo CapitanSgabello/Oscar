@@ -12,30 +12,30 @@ import it.uniroma3.siw.oscar.repository.ArtistaRepository;
 
 @Service
 public class ArtistaService {
-	
+
 	@Autowired
 	private ArtistaRepository artistaRepo;
-	
+
 	@Transactional
 	public Artista save(Artista artista) {
 		return artistaRepo.save(artista);
 	}
-	
+
 	@Transactional
 	public void delete(Artista artista) {
-		 artistaRepo.delete(artista);
+		artistaRepo.delete(artista);
 	}
-	
+
 	@Transactional
 	public List<Artista> cercaPerCognome(String cognome) {
 		return artistaRepo.findByCognome(cognome);	
 	}
-	
+
 	@Transactional
 	public List<Artista> cercaPerNomeECognome(String nome, String cognome){
 		return artistaRepo.findByNomeAndCognome(nome, cognome);		
 	}
-	
+
 	@Transactional
 	public List<Artista> cercaPerNome(String nome){
 		return artistaRepo.findByNome(nome);
@@ -54,7 +54,7 @@ public class ArtistaService {
 		else 
 			return null;
 	}
-	
+
 	@Transactional
 	public boolean alreadyExists(Artista artista) {
 		List<Artista> artisti = this.artistaRepo.findByNomeAndCognome(artista.getNome(), artista.getCognome());
@@ -64,6 +64,6 @@ public class ArtistaService {
 			return false;
 	}
 
-	
+
 
 }

@@ -17,53 +17,52 @@ import it.uniroma3.siw.oscar.repository.CommentoRepository;
 @Service
 public class CommentoService {
 
-		
-		@Autowired
-		private CommentoRepository commentoRepo;
-		
-		@Autowired
-		private CredenzialiService credenzialiService;
-		
-		@Autowired
-		private FilmService filmService;
-		
-		@Transactional
-		public Commento save(Commento commento) {
-			return commentoRepo.save(commento);
-		}
-		@Transactional
-		public void delete(Commento commento) {
-			commentoRepo.delete(commento);
-		}
-		
-		@Transactional
-		public List<Commento> cercaPerUtente(Utente utente) {
-			return commentoRepo.findByUtente(utente);	
-		}
-		
-		@Transactional
-		public Film cercaFilmPerId(Long id) {
-			return  filmService.filmPerId(id);	
-		}
-		
-		@Transactional
-		public List<Commento> tutti() {
-			return (List<Commento>)commentoRepo.findAll();
-		}
+	@Autowired
+	private CommentoRepository commentoRepo;
 
-		@Transactional
-		public Commento commentoPerId(Long id) {
-			Optional<Commento> recensione = commentoRepo.findById(id);
-			if (recensione.isPresent())
-				return recensione.get();
-			else 
-				return null;
-		}
+	@Autowired
+	private CredenzialiService credenzialiService;
 
-		public Credenziali cercaCredenzialiPerUsername(String username) {
-			return credenzialiService.getCredenziali(username);
-		}
+	@Autowired
+	private FilmService filmService;
 
+	@Transactional
+	public Commento save(Commento commento) {
+		return commentoRepo.save(commento);
 	}
+	@Transactional
+	public void delete(Commento commento) {
+		commentoRepo.delete(commento);
+	}
+
+	@Transactional
+	public List<Commento> cercaPerUtente(Utente utente) {
+		return commentoRepo.findByUtente(utente);	
+	}
+
+	@Transactional
+	public Film cercaFilmPerId(Long id) {
+		return  filmService.filmPerId(id);	
+	}
+
+	@Transactional
+	public List<Commento> tutti() {
+		return (List<Commento>)commentoRepo.findAll();
+	}
+
+	@Transactional
+	public Commento commentoPerId(Long id) {
+		Optional<Commento> recensione = commentoRepo.findById(id);
+		if (recensione.isPresent())
+			return recensione.get();
+		else 
+			return null;
+	}
+
+	public Credenziali cercaCredenzialiPerUsername(String username) {
+		return credenzialiService.getCredenziali(username);
+	}
+
+}
 
 

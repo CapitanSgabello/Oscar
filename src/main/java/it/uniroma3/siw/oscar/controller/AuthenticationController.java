@@ -46,35 +46,27 @@ public class AuthenticationController {
 			BindingResult credentialsBindingResult,
 			Model model) {
 
-		// validate user and credentials fields
 		this.utenteValidator.validate(utente, userBindingResult);
 		this.credenzialiValidator.validate(credenziali, credentialsBindingResult);
 
-		// if neither of them had invalid contents, store the User and the Credentials into the DB
 		if(!userBindingResult.hasErrors() && ! credentialsBindingResult.hasErrors()) {
-			// set the user and store the credentials;
-			// this also stores the User, thanks to Cascade.ALL policy
 			credenziali.setUtente(utente);
 			credenzialiService.saveCredenziali(credenziali);
-			return "registrazioneAvvenuta";  //li mandiamo se è registrato con successo
+			return "registrazioneAvvenuta"; 
 		}
-		return "registraUtente";		//altrimenti rimandiamo alla form
+		return "registraUtente";
 	}
 
 	@RequestMapping(value = "/default", method = RequestMethod.GET)
 	public String defaultAfterLogin(Model model, HttpServletRequest request) {
 
-		//springSecurity ci mette a disposizione i dati dell'utente con l'ogg UserDetails, us, psw,ruolo
 		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-		//recuperiamo le credenziali associate a questo user a partire dal nome username
 		Credenziali credenziali = credenzialiService.getCredenziali(userDetails.getUsername());
 
 		String username = request.getUserPrincipal().getName();
 		model.addAttribute("utente", this.credenzialiService.getCredenziali(username).getUtente());
-		
-		//se queste credenziali hanno il ruolo di admin allora mandiamo ad una pagina che contiene il menu dell'amministratore
-		//altrimenti lo mandiamo alla pagina home
+
 		if (credenziali.getRuolo().equals(Credenziali.ADMIN_ROLE)) {
 			return "admin/home";
 		}

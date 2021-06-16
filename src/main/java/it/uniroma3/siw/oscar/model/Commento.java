@@ -7,27 +7,23 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-
 @Entity
 public class Commento {
-	
-	public Commento() {
-		
-	}
-	
+
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	private Long id;
-	
-	
+
 	@Column(nullable = false, length = 500)
 	private String testo;
-	
+
 	@ManyToOne
 	private Utente utente;
-	
+
 	@ManyToOne
 	private Film film;
+
+	public Commento() {}
 
 	public Long getId() {
 		return id;

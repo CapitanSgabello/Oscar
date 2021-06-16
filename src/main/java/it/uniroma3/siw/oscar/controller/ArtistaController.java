@@ -44,20 +44,20 @@ public class ArtistaController {
 		model.addAttribute("artisti", artisti);
 		return "artisti.html";
 	}
-	
+
 	@RequestMapping(value = "/artista/{id}", method = RequestMethod.GET)
 	public String getArtista(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("artista", this.artistaService.artistaPerId(id));
 		return "artista.html";
 	}
-	
+
 	@RequestMapping(value="/addArtista", method = RequestMethod.GET)
 	public String addArtista(Model model) {
 		logger.debug("addArtista");
 		model.addAttribute("artista", new Artista());
 		return "artistaForm.html";
 	}
-	
+
 	@RequestMapping(value = "/artista", method = RequestMethod.POST)
 	public String newArtista(@ModelAttribute("artista") Artista artista, 
 			Model model, BindingResult bindingResult) {
@@ -76,7 +76,7 @@ public class ArtistaController {
 		model.addAttribute("artisti", this.artistaService.tutti());
 		return "artistaDelete.html";
 	}
-	
+
 	@RequestMapping(value = "/deleteArtista", method = RequestMethod.POST)
 	public String delete(@RequestParam("id") Long artistaId, 
 			Model model) {

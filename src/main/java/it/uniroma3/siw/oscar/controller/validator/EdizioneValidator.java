@@ -13,10 +13,10 @@ import it.uniroma3.siw.oscar.service.EdizioneService;
 
 @Component
 public class EdizioneValidator implements Validator{
-	
+
 	@Autowired
 	private EdizioneService edizioneService;
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(EdizioneValidator.class);
 
 	@Override
@@ -27,7 +27,7 @@ public class EdizioneValidator implements Validator{
 	@Override
 	public void validate(Object target, Errors errors) {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "anno", "required");
-		
+
 		if(!errors.hasErrors()) {
 			logger.debug("I valori inseriti sono validi.");
 			if(this.edizioneService.alreadyExists((Edizione)target)) {
@@ -35,7 +35,7 @@ public class EdizioneValidator implements Validator{
 				errors.reject("duplicato");
 			}
 		}
-		
+
 	}
 
 }

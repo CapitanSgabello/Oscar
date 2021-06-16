@@ -15,28 +15,28 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Edizione implements Comparable<Edizione>{
-	
+
 	public static final String LUOGO = "Dolby Theatre, Los Angeles";
 
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	private Long id;
-	
+
 	@Column(nullable = false)
 	private String luogo;
-	
+
 	@Column(nullable = false, unique=true)
 	private Long anno;
-	
+
 	@OneToMany(mappedBy="edizione", cascade = {CascadeType.REMOVE})
 	private List<CategoriaFilm> categorieFilm;
-	
+
 	@OneToMany(mappedBy="edizione", cascade = {CascadeType.REMOVE})
 	private List<CategoriaArtista> categorieArtisti;
-	
+
 	@ManyToOne
 	private Artista presentatore;
-	
+
 	public Edizione() {
 		this.luogo = LUOGO;
 		this.categorieArtisti = new ArrayList<>();
@@ -95,9 +95,9 @@ public class Edizione implements Comparable<Edizione>{
 	public int compareTo(Edizione o) {
 		return this.anno.compareTo(o.anno);
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 }

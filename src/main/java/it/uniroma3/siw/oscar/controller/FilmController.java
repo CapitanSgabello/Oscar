@@ -20,8 +20,6 @@ import it.uniroma3.siw.oscar.model.Credenziali;
 import it.uniroma3.siw.oscar.model.Film;
 import it.uniroma3.siw.oscar.service.FilmService;
 
-
-
 @Controller
 public class FilmController {
 
@@ -38,23 +36,13 @@ public class FilmController {
 		model.addAttribute("films", this.filmService.tutti());
 		return "films.html";
 	}
-	
+
 	@RequestMapping(value = "/film/genere/{genere}", method = RequestMethod.GET)
 	public String getFilmsByGenere(@PathVariable("genere") String genere, Model model) {
 		model.addAttribute("films", this.filmService.cercaPerGenere(genere));
 		model.addAttribute("genereFilm", genere);
 		return "films.html";
 	}
-
-	/*
-	@RequestMapping(value = "/film", method = RequestMethod.POST)
-	public String getFilmsByTitolo(@RequestParam("titolo") String titolo, Model model) {
-		titolo = titolo.toLowerCase();
-		titolo = titolo.substring(0, 1).toUpperCase() + titolo.substring(1);
-		model.addAttribute("films", this.filmService.cercaPerTitolo(titolo));
-		return "films.html";
-	}
-	*/
 
 	@RequestMapping(value = "/film/{id}", method = RequestMethod.GET)
 	public String getFilm(@PathVariable("id") Long id, Model model, HttpServletRequest request) {

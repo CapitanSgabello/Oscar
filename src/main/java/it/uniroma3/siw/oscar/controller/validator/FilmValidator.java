@@ -13,10 +13,10 @@ import it.uniroma3.siw.oscar.service.FilmService;
 
 @Component
 public class FilmValidator implements Validator{
-	
+
 	@Autowired
 	private FilmService filmService;
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(FilmValidator.class);
 
 	@Override
@@ -28,7 +28,7 @@ public class FilmValidator implements Validator{
 	public void validate(Object target, Errors errors) {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "titolo", "required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "genere", "required");
-		
+
 		if(!errors.hasErrors()) {
 			logger.debug("I valori inseriti sono validi.");
 			if(this.filmService.alreadyExists((Film)target)) {
@@ -36,7 +36,7 @@ public class FilmValidator implements Validator{
 				errors.reject("duplicato");
 			}
 		}
-		
+
 	}
 
 }

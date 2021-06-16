@@ -14,57 +14,55 @@ import javax.persistence.OneToMany;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-
-
 @Entity
 public class Artista {
 
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	private Long id;
-	
+
 	@Column(nullable = false)
 	private String nome;
-	
+
 	@Column(nullable = false)
 	private String cognome;
-	
+
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private LocalDate dataNascita;
-	
+
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@Column(nullable = true)
 	private LocalDate dataMorte;
 
 	private String nazionalita;
-	
+
 	private String imageUrl;
-	
+
 	@OneToMany(mappedBy="vincitore")
 	private List<CategoriaArtista> categorieVinte;
-	
+
 	@OneToMany(mappedBy="candidati")
 	private List<CategoriaArtista> categorieCandidate;
-	
+
 	@OneToMany(mappedBy="presentatore")
 	private List<Edizione> edizioniPresentate;
-	
+
 	@ManyToMany(mappedBy="attori")
 	private List<Film> filmRecitati;
-	
+
 	@OneToMany(mappedBy="regista")
 	private List<Film> filmDiretti;
 
 	@ManyToMany(mappedBy="operatoriTecnici")
 	private List<Film> filmRealizzati;
-	
+
 	public Artista() {
-	  this.categorieCandidate=new ArrayList<>();
-	  this.categorieVinte=new ArrayList<>();
-	  this.edizioniPresentate=new ArrayList<>();
-	  this.filmDiretti=new ArrayList<>();
-	  this.filmRealizzati=new ArrayList<>();
-	  this.filmRealizzati=new ArrayList<>();
+		this.categorieCandidate = new ArrayList<>();
+		this.categorieVinte = new ArrayList<>();
+		this.edizioniPresentate = new ArrayList<>();
+		this.filmDiretti = new ArrayList<>();
+		this.filmRealizzati = new ArrayList<>();
+		this.filmRealizzati = new ArrayList<>();
 	}
 
 	public Long getId() {
@@ -170,5 +168,5 @@ public class Artista {
 	public void setFilmRealizzati(List<Film> filmRealizzati) {
 		this.filmRealizzati = filmRealizzati;
 	}
-	
+
 }

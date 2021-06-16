@@ -13,23 +13,23 @@ public class Credenziali {
 
 	public static String DEFAULT_ROLE = "DEFAULT";
 	public static String ADMIN_ROLE = "ADMIN";
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+
 	@Column(nullable = false, unique = true)
 	private String username;
 
 	@Column(nullable = false)
 	private String password;
-	
+
 	@Column(nullable = false)
 	private String ruolo;
-	
+
 	@OneToOne(cascade = CascadeType.ALL)
 	private Utente utente;
-	
+
 	public Credenziali() {}
 
 	public static String getDefaultRole() {
@@ -87,6 +87,6 @@ public class Credenziali {
 	public void setUtente(Utente utente) {
 		this.utente = utente;
 	}
-	
-	
+
+
 }

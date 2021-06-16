@@ -10,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 @Entity
 public class CategoriaFilm {
@@ -18,22 +17,22 @@ public class CategoriaFilm {
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	private Long id;
-	
+
 	@Column(nullable = false)
 	private String nome;
-	
+
 	@ManyToOne
 	private Edizione edizione;
-	
+
 	@ManyToOne
 	private Film vincitore;
-	
+
 	@ManyToMany
 	private List<Film> candidati;
-	
-	
+
+
 	public CategoriaFilm() {
-		this.candidati=new ArrayList<>();
+		this.candidati =    new ArrayList<>();
 	}
 
 	public Long getId() {
@@ -75,6 +74,6 @@ public class CategoriaFilm {
 	public void setCandidati(List<Film> candidati) {
 		this.candidati = candidati;
 	}
-	
-	
+
+
 }

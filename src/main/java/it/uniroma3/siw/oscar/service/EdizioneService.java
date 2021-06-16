@@ -13,23 +13,23 @@ import it.uniroma3.siw.oscar.repository.EdizioneRepository;
 
 @Service
 public class EdizioneService {
-	
+
 	@Autowired
 	private EdizioneRepository edizioneRepo;
-	
+
 	@Autowired
 	private ArtistaService artistaService;
-	
+
 	@Transactional
 	public Edizione save(Edizione edizione) {
 		return edizioneRepo.save(edizione);
 	}
-	
+
 	@Transactional
 	public void delete(Edizione edizione) {
 		edizioneRepo.delete(edizione);
 	}
-	
+
 	@Transactional
 	public Edizione cercaPerAnno(Long anno) {
 		return edizioneRepo.findByAnno(anno);	
@@ -48,26 +48,26 @@ public class EdizioneService {
 		else 
 			return null;
 	}
-	
+
 	@Transactional
 	public boolean alreadyExists(Edizione edizione) {
-		
+
 		if (this.edizioneRepo.findByAnno(edizione.getAnno()) != null)
 			return true;
 		else 
 			return false;
 	}
-	
+
 	@Transactional
 	public List<Artista> tuttiArtisti(){
 		return this.artistaService.tutti();
 	}
-	
+
 	@Transactional
 	public Artista artistaPerId(Long id) {
 		return this.artistaService.artistaPerId(id);
 	}
 
-	
+
 
 }

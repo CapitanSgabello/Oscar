@@ -22,7 +22,7 @@ import it.uniroma3.siw.oscar.service.CategoriaArtistaService;
 
 @Controller
 public class CategoriaArtistaController {
-	
+
 	@Autowired
 	private CategoriaArtistaService categoriaArtistaService;
 
@@ -49,7 +49,7 @@ public class CategoriaArtistaController {
 		}
 		return "categoriaArtista.html";
 	}
-	
+
 	@RequestMapping(value="/addCategoriaArtista", method = RequestMethod.GET)
 	public String addCategoriaArtista(Model model) {
 		logger.debug("addCategoriaArtista");
@@ -57,7 +57,7 @@ public class CategoriaArtistaController {
 		model.addAttribute("edizioni", this.categoriaArtistaService.tutteLeEdizioni());
 		return "CategoriaArtistaForm.html";
 	}
-	
+
 	@RequestMapping(value = "/categoriaArtista", method = RequestMethod.POST)
 	public String newCategoriaArtista(@ModelAttribute("categoriaArtista") CategoriaArtista categoria, 
 			Model model, BindingResult bindingResult) {
@@ -70,7 +70,7 @@ public class CategoriaArtistaController {
 		model.addAttribute("edizioni", this.categoriaArtistaService.tutteLeEdizioni());
 		return "CategoriaArtistaForm.html";
 	}
-	
+
 	@RequestMapping(value="/addVincitoreToCategoriaA/{id}", method = RequestMethod.GET)
 	public String addVincitoreToCategoriaA(@PathVariable("id") Long id, Model model) {
 		logger.debug("addVincitoreToCategoriaA");
@@ -79,7 +79,7 @@ public class CategoriaArtistaController {
 		model.addAttribute("candidati", categoria.getCandidati());
 		return "vincitoreArtistaForm.html";
 	}
-	
+
 	@RequestMapping(value = "/newVincitoreToCategoriaA", method = RequestMethod.POST)
 	public String newVincitoreToCategoriaA(@ModelAttribute("categoria") CategoriaArtista categoria, Model model) {
 		this.categoriaArtistaService.save(categoria);
@@ -87,7 +87,7 @@ public class CategoriaArtistaController {
 		model.addAttribute("admin", true);
 		return "categoriaArtista.html";
 	}
-	
+
 	@RequestMapping(value="/addCandidatoToCategoriaA/{id}", method = RequestMethod.GET)
 	public String addCandidatoToCategoriaA(@PathVariable("id") Long id, Model model) {
 		logger.debug("addCandidatoToCategoriaA");
@@ -95,7 +95,7 @@ public class CategoriaArtistaController {
 		model.addAttribute("artisti", this.categoriaArtistaService.tuttiArtisti());
 		return "candidatoArtistaForm.html";
 	}
-	
+
 	@RequestMapping(value = "/newCandidatoInCategoriaA/{categoriaArtistaId}/{candidatoId}", method = RequestMethod.GET)
 	public String newCandidatoInCategoriaA(@PathVariable("categoriaArtistaId") Long categoriaId, @PathVariable("candidatoId") Long candidatoId, Model model) {
 		Artista candidato = this.categoriaArtistaService.artistaPerId(candidatoId);
@@ -121,7 +121,7 @@ public class CategoriaArtistaController {
 		return "admin/home";
 	}
 
-	
-	
+
+
 
 }

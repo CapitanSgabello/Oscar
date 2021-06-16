@@ -11,8 +11,6 @@ import org.springframework.validation.Validator;
 import it.uniroma3.siw.oscar.model.Commento;
 import it.uniroma3.siw.oscar.service.CommentoService;
 
-
-
 @Component
 public class CommentoValidator implements Validator{
 

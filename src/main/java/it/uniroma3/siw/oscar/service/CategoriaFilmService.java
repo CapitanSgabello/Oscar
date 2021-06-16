@@ -10,12 +10,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import it.uniroma3.siw.oscar.model.Artista;
-import it.uniroma3.siw.oscar.model.CategoriaArtista;
 import it.uniroma3.siw.oscar.model.CategoriaFilm;
 import it.uniroma3.siw.oscar.model.Credenziali;
 import it.uniroma3.siw.oscar.model.Edizione;
 import it.uniroma3.siw.oscar.model.Film;
-import it.uniroma3.siw.oscar.repository.ArtistaRepository;
 import it.uniroma3.siw.oscar.repository.CategoriaFilmRepository;
 
 @Service
@@ -23,37 +21,37 @@ public class CategoriaFilmService {
 
 	@Autowired
 	private CategoriaFilmRepository categoriaFilmRepo;
-	
+
 	@Autowired
 	private EdizioneService edizioneService;
-	
+
 	@Autowired
 	private CategoriaArtistaService categoriaArtistaService;
-	
+
 	@Autowired
 	private CredenzialiService credenzialiService;
-	
+
 	@Autowired
 	private ArtistaService artistaService;
-	
+
 	@Autowired
 	private FilmService filmService;
-	
+
 	@Transactional
 	public CategoriaFilm save(CategoriaFilm categoriaFilm) {
 		return categoriaFilmRepo.save(categoriaFilm);
 	}
-	
+
 	@Transactional
 	public void delete(CategoriaFilm categoriaFilm) {
 		categoriaFilmRepo.delete(categoriaFilm);
 	}
-	
+
 	@Transactional
 	public List<CategoriaFilm> cercaPerNome(String nome) {
 		return categoriaFilmRepo.findByNome(nome);	
 	}
-	
+
 	@Transactional
 	public List<CategoriaFilm> cercaPerVincitore(Film film){
 		return categoriaFilmRepo.findByVincitore(film);		
@@ -82,10 +80,10 @@ public class CategoriaFilmService {
 		else 
 			return null;
 	}
-	
+
 	@Transactional
 	public boolean alreadyExists(CategoriaFilm categoriaFilm) {
-		
+
 		if (this.categoriaFilmRepo.findByNomeAndEdizione(categoriaFilm.getNome(), categoriaFilm.getEdizione()) != null)
 			return true;
 		else 
@@ -94,7 +92,7 @@ public class CategoriaFilmService {
 
 	@Transactional
 	public Set<String> findTuttiNomiCategoriaArtisti() {
-		
+
 		return this.categoriaArtistaService.tuttiNomi();
 	}
 
@@ -102,26 +100,26 @@ public class CategoriaFilmService {
 	public List<Edizione> tutteLeEdizioni(){
 		return this.edizioneService.tutti();
 	}
-	
+
 	@Transactional
 	public Credenziali getCredenziali(String username) {
 		return this.credenzialiService.getCredenziali(username);
 	}
-	
+
 	@Transactional
 	public Film filmPerId(Long id) {
 		return this.filmService.filmPerId(id);
 	}
-	
+
 	@Transactional
 	public List<Film> tuttiIFilm() {
 		return this.filmService.tutti();
 	}
-	
+
 	@Transactional
 	public List<Artista> tuttiArtisti(){
 		return this.artistaService.tutti();
 	}
-	
+
 
 }
