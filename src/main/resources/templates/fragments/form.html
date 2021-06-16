@@ -44,7 +44,7 @@
 		<form th:action="@{__${pathAction}__}" method="POST" th:object="${categoria}">		
 			<div>	
 				<div>
-					<select name='id'>
+					<select th:field="*{vincitore}">
 	    				<option th:each="candidato : ${lista}" th:value="${candidato.id}" th:text="|${candidato.__${param1}__} ${candidato.__${param2}__}|">
 	    				</option>
 					</select>

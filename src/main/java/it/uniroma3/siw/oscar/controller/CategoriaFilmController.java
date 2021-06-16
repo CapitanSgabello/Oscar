@@ -89,8 +89,7 @@ public class CategoriaFilmController {
 	}
 	
 	@RequestMapping(value = "/newVincitoreToCategoriaF", method = RequestMethod.POST)
-	public String newVincitoreToCategoriaF(@RequestParam("id") Long filmId, @ModelAttribute("categoria") CategoriaFilm categoria, Model model) {
-		categoria.setVincitore(this.categoriaFilmService.filmPerId(filmId));
+	public String newVincitoreToCategoriaF(@ModelAttribute("categoria") CategoriaFilm categoria, Model model) {
 		this.categoriaFilmService.save(categoria);
 		model.addAttribute("categoria", categoria);
 		model.addAttribute("admin", true);

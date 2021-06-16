@@ -81,8 +81,7 @@ public class CategoriaArtistaController {
 	}
 	
 	@RequestMapping(value = "/newVincitoreToCategoriaA", method = RequestMethod.POST)
-	public String newVincitoreToCategoriaA(@RequestParam("id") Long artistaId, @ModelAttribute("categoria") CategoriaArtista categoria, Model model) {
-		categoria.setVincitore(categoriaArtistaService.artistaPerId(artistaId));
+	public String newVincitoreToCategoriaA(@ModelAttribute("categoria") CategoriaArtista categoria, Model model) {
 		this.categoriaArtistaService.save(categoria);
 		model.addAttribute("categoria", categoria);
 		model.addAttribute("admin", true);
