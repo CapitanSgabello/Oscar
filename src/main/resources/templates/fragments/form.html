@@ -10,14 +10,13 @@
 	<header th:fragment="intestazione">
 	</header>
 	
-	<div th:fragment="ricercaForm(header, lista, path, path2, param1, param2)">
+	<div class="center" th:fragment="ricercaForm(header, lista, path, path2, param1, param2)">
 		<div>
 	    	<h2 th:text="'Seleziona ' + ${header}"></h2>
 	    	<input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search.." title="Type in a category">
 		</div>
 		<div id="sfondo-testi">
 			<div id="flex-testo">
-				<h2 th:text="${header} + ' :'" class="center"></h2>
 		    	<ul id="myMenu"> 
 		    		<div th:if="${param2} != ''">
 			    		<div th:each="oggetto : ${lista}">
